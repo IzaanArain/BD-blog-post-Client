@@ -3,8 +3,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {AiOutlineMail as MailLogo} from "react-icons/ai"
+import {RiLockPasswordFill as PasswordLogo} from "react-icons/ri"
 
 const SignUp = () => {
+
   return (
     <>
       <Container>

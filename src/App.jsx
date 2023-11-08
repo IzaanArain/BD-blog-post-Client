@@ -1,12 +1,12 @@
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUp";
+import Layout from "./components/Layout";
 
 function App() {
-
   return (
     <>
-      <SignUp/>
+      <Layout />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

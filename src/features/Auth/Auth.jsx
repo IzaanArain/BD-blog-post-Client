@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import extraReducers from "./AuthReducers";
+import extraReducers from "../UseReducers";
 
 const initialState = {
   isLoading: false,

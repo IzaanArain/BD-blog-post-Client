@@ -1,4 +1,4 @@
-import {signUpApi,loginApi} from "./Auth";
+import {signUpApi,loginApi} from "./Auth/Auth";
 import {toast} from "react-toastify";
 
 const extraReducers=(builder)=>{

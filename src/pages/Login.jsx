@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const user = useSelector(loggedInUser);
-  console.log("logged In User", user);
+  // console.log("logged In User", user);
 
   const onSubmit = (e) => {
     e.preventDefault();

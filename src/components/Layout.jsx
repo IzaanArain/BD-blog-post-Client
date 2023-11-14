@@ -3,13 +3,14 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import NavBar from "./NavBar";
 import UserList from "./UserList";
-import useAuthState from "../hooks/UseAuthState";
 import { Navigate } from "react-router-dom";
+import { loggedInUser } from "../features/Auth/Auth";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
-  const user = useAuthState();
-  const token = user?.user_auth;
-  // console.log("token", token);
+  const user=useSelector(loggedInUser);
+  const token=user?.user_auth;
+  console.log("token", token);
   return (
     <>
       <BrowserRouter>

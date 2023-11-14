@@ -8,23 +8,23 @@ const initialState = {
   user: null,
 };
 
-export const signUpApi = createAsyncThunk("auth/signup", async (payload) => {
+export const signUpApi = createAsyncThunk("auth/signup", async (payload,thunkAPI) => {
   try {
     const res = await axios.post(
       "http://localhost:5000/api/v1/user/register",
-      { email: payload.email, password: payload.password,role:"user" },
+      { email: payload.email, password: payload.password, role: "user" },
       {
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
-    console.log(res)
     const data = await res.data;
-    console.log("signup api data: ",data)
-    return {data}
+    // console.log("signup api data: ", data);
+    return { data: data };
   } catch (err) {
-    console.error("Error", err.message);
+    // console.error("Error", err.response.data);
+    return thunkAPI.rejectWithValue(err.response.data)
   }
 });
 
@@ -34,5 +34,5 @@ const AuthSlice = createSlice({
   reducers: {},
   extraReducers,
 });
-export const user=(state)=>state.AuthSlice.user;
+export const signUpUser = (state) => state?.AuthSlice?.user;
 export default AuthSlice.reducer;

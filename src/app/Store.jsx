@@ -7,7 +7,8 @@ import thunk from 'redux-thunk';
 const persistAuthConfig = {
    key: 'blog-user',
    storage,
-   blacklist: ['isLoading','isError'],
+  //  blacklist: ['isLoading','isError'],
+  // whitelist: ['user'],
  };
 
 const persistedUserReducer=persistReducer(persistAuthConfig,AuthReducer);

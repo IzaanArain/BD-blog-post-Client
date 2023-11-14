@@ -27,7 +27,6 @@ const SignUp = () => {
         password,
       })
     );
-
     // setEmail("");
     // setPassword("");
     // setConfirmPassword("");

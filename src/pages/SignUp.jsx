@@ -14,8 +14,8 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const user = useSelector(signUpUser);
-  console.log("user", user);
+  // const user = useSelector(signUpUser);
+  // console.log("user", user);
 
   const dispatch = useDispatch();
 
@@ -32,6 +32,7 @@ const SignUp = () => {
     // setPassword("");
     // setConfirmPassword("");
   };
+  
   return (
     <>
       <Container>

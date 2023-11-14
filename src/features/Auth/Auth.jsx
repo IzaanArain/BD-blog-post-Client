@@ -8,11 +8,36 @@ const initialState = {
   user: null,
 };
 
-export const signUpApi = createAsyncThunk("auth/signup", async (payload,thunkAPI) => {
+const url = `http://localhost:5000/api/v1/user`;
+
+export const signUpApi = createAsyncThunk(
+  "auth/signup",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `${url}/register`,
+        { email: payload.email, password: payload.password, role: "user" },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.data;
+      // console.log("signup api data: ", data);
+      return { data: data };
+    } catch (err) {
+      // console.error("Error", err.response.data);
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const loginApi = createAsyncThunk("auth/login", async (payload, thunkAPI) => {
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/v1/user/register",
-      { email: payload.email, password: payload.password, role: "user" },
+      `${url}/login`,
+      { email: payload.email, password: payload.password },
       {
         headers: {
           "Content-Type": "application/json",
@@ -20,11 +45,10 @@ export const signUpApi = createAsyncThunk("auth/signup", async (payload,thunkAPI
       }
     );
     const data = await res.data;
-    // console.log("signup api data: ", data);
-    return { data: data };
+    localStorage.setItem("user", JSON.stringify(user));
+    return { data };
   } catch (err) {
-    // console.error("Error", err.response.data);
-    return thunkAPI.rejectWithValue(err.response.data)
+    return thunkAPI.rejectWithValue(err.response.data);
   }
 });
 
@@ -34,5 +58,5 @@ const AuthSlice = createSlice({
   reducers: {},
   extraReducers,
 });
-export const signUpUser = (state) => state?.AuthSlice?.user;
+export const signUpUser = (state) => state?.auth?.user;
 export default AuthSlice.reducer;

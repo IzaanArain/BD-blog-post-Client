@@ -49,7 +49,7 @@ export const loginApi = createAsyncThunk(
       const data = await res.data;
       console.log("login api data: ", data);
       const user = data?.user;
-      localStorage.setItem("user", JSON.stringify(user));
+      // localStorage.setItem("user", JSON.stringify(user));
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);

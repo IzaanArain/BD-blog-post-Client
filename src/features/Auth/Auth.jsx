@@ -60,10 +60,16 @@ export const loginApi = createAsyncThunk(
 const AuthSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout:(state,action)=>{
+      state.user=null;
+      localStorage.setItem("persist:blog-user",null);
+    },
+  },
   extraReducers,
 });
 export const signUpUser = (state) => state?.auth?.user;
 export const loggedInUser = (state) => state?.auth?.user;
 
+export const {logout}=AuthSlice.actions;
 export default AuthSlice.reducer;

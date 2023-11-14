@@ -63,6 +63,8 @@ const AuthSlice = createSlice({
   reducers: {
     logout:(state,action)=>{
       state.user=null;
+      state.isLoading=false;
+      state.isError=false;
       localStorage.setItem("persist:blog-user",null);
     },
   },

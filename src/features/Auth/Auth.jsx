@@ -65,7 +65,7 @@ const AuthSlice = createSlice({
       state.user=null;
       state.isLoading=false;
       state.isError=false;
-      // localStorage.setItem("persist:blog-user",null);
+      localStorage.removeItem("persist:blog-user");
     },
   },
   extraReducers,

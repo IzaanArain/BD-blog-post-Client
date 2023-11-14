@@ -10,14 +10,14 @@ const persistConfig = {
    blacklist: ['isLoading','isError'],
  };
 
- const rootReducer = combineReducers({
-   auth:AuthReducer,
- });
+const persistedUserReducer=persistReducer(persistConfig,AuthReducer);
 
-const persistedReducer=persistReducer(persistConfig,rootReducer);
+const rootReducer = combineReducers({
+  auth:persistedUserReducer,
+});
 
 export const store=configureStore({
-   reducer:persistedReducer,
+   reducer:rootReducer,
    middleware: [thunk]
 });
 

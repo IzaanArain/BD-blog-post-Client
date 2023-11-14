@@ -33,24 +33,29 @@ export const signUpApi = createAsyncThunk(
   }
 );
 
-export const loginApi = createAsyncThunk("auth/login", async (payload, thunkAPI) => {
-  try {
-    const res = await axios.post(
-      `${url}/login`,
-      { email: payload.email, password: payload.password },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await res.data;
-    localStorage.setItem("user", JSON.stringify(user));
-    return { data };
-  } catch (err) {
-    return thunkAPI.rejectWithValue(err.response.data);
+export const loginApi = createAsyncThunk(
+  "auth/login",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `${url}/login`,
+        { email: payload.email, password: payload.password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.data;
+      console.log("login api data: ", data);
+      const user = data?.user;
+      localStorage.setItem("user", JSON.stringify(user));
+      return { data };
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
   }
-});
+);
 
 const AuthSlice = createSlice({
   name: "auth",
@@ -59,4 +64,6 @@ const AuthSlice = createSlice({
   extraReducers,
 });
 export const signUpUser = (state) => state?.auth?.user;
+export const loggedInUser = (state) => state?.auth?.user;
+
 export default AuthSlice.reducer;

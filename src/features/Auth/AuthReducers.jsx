@@ -1,4 +1,4 @@
-import {signUpApi} from "./Auth";
+import {signUpApi,loginApi} from "./Auth";
 import {toast} from "react-toastify";
 
 const extraReducers=(builder)=>{
@@ -10,7 +10,7 @@ const extraReducers=(builder)=>{
     .addCase(signUpApi.fulfilled,(state,action)=>{
         state.isLoading=false;
         state.isError=false;
-        // state.user=action?.payload?.data;
+        state.user=action?.payload?.data;
     })
     .addCase(signUpApi.rejected,(state,action)=>{
         state.isLoading=false;
@@ -29,9 +29,9 @@ const extraReducers=(builder)=>{
     .addCase(loginApi.fulfilled,(state,action)=>{
         state.isLoading=false;
         state.isError=false;
-        state.user=action?.payload?.data;
+        state.user=action?.payload?.data?.user;
     })
-    .addCase(signUpApi.rejected,(state,action)=>{
+    .addCase(loginApi.rejected,(state,action)=>{
         state.isLoading=false;
         state.isError=true;
         // console.error("Rejected Error",action?.payload?.message);

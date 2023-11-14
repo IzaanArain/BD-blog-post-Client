@@ -6,13 +6,17 @@ import Form from "react-bootstrap/Form";
 import { AiOutlineMail as MailLogo } from "react-icons/ai";
 import { RiLockPasswordFill as PasswordLogo } from "react-icons/ri";
 import { useState } from "react";
-import { loginApi } from "../features/Auth/Auth";
+import { loginApi, loggedInUser } from "../features/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
+  const user = useSelector(loggedInUser);
+  console.log("logged In User", user);
+  
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -22,7 +26,7 @@ const Login = () => {
       })
     );
   };
-  
+
   return (
     <>
       <Container>
@@ -58,6 +62,7 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 };

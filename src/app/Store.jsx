@@ -4,13 +4,13 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
-const persistConfig = {
+const persistAuthConfig = {
    key: 'blog-user',
    storage,
    blacklist: ['isLoading','isError'],
  };
 
-const persistedUserReducer=persistReducer(persistConfig,AuthReducer);
+const persistedUserReducer=persistReducer(persistAuthConfig,AuthReducer);
 
 const rootReducer = combineReducers({
   auth:persistedUserReducer,

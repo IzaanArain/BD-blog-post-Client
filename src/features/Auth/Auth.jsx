@@ -47,7 +47,7 @@ export const loginApi = createAsyncThunk(
         }
       );
       const data = await res.data;
-      console.log("login api data: ", data);
+      // console.log("login api data: ", data);
       const user = data?.user;
       // localStorage.setItem("user", JSON.stringify(user));
       return { data };

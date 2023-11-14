@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
-  console.log("token", token);
+  // console.log("token", token);
   return (
     <>
       <BrowserRouter>

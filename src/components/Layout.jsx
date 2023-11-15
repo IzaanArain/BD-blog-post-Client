@@ -6,7 +6,7 @@ import UserList from "./UserList";
 import { Navigate } from "react-router-dom";
 import { loggedInUser } from "../features/Auth/Auth";
 import { useSelector } from "react-redux";
-
+import OtpVerify from "../pages/OtpVerify";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
@@ -24,6 +24,7 @@ const Layout = () => {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/otp_verify" element={<OtpVerify/>} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}

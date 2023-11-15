@@ -23,12 +23,8 @@ const NavBar = () => {
             </Nav>
           ) : (
             <Nav className="me-auto">
-              <Nav.Link href="#home">
-                <Link to="/login">Login</Link>
-              </Nav.Link>
-              <Nav.Link href="#features">
-                <Link to="/signup">SignUp</Link>
-              </Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/signup">SignUp</Nav.Link>
             </Nav>
           )}
           {token ? <Logout /> : null}

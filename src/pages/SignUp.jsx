@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpApi, signUpUser } from "../features/Auth/Auth";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -16,17 +17,18 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const user_created = useSelector(signUpUser);
   // console.log("user", user_created);
-
+  const navigate=useNavigate();
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      signUpApi({
-        email,
-        password,
-      })
-    );
+    // dispatch(
+    //   signUpApi({
+    //     email,
+    //     password,
+    //   })
+    // );
+    navigate("/otp_verify",{state:{email}})
     // setEmail("");
     // setPassword("");
     // setConfirmPassword("");

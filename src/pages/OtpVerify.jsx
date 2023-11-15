@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -23,47 +22,11 @@ const OtpVerify = () => {
     }
   };
 
-  const isVerified = async (data) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/users/otp_verify",
-        { code: data, email: userEmail },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const res_data = res.data;
-      return res_data?.data;
-    } catch (err) {
-      throw err.response.data.message;
-    }
-  };
+  
   const otpOnSubmit = (e) => {
     e.preventDefault();
     const otp_input = otpArr.join("");
-    if (!otp_input) {
-      setIsError("Please enter complete OTP Code");
-    }else if (otp_input.length !== 6) {
-      setIsError("OTP code must be six digits");
-    } else if (userEmail) {
-      isVerified(otp_input)
-        .then((user) => {
-          const userEmail=user?.email
-          if (user?.isForgetPassword) {
-            navigate("/reset_password",{state:{email:userEmail}});
-          } else {
-            navigate("/login");
-          }
-        })
-        .catch((err) => {
-          console.error("Error", err);
-          setIsError(err);
-        });
-    } else {
-      setIsError("user must be registered before OTP verification");
-    }
+    console.log(otp_input)
   };
 
   return (

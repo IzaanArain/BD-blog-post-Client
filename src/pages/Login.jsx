@@ -34,7 +34,7 @@ const Login = () => {
           <Col>
             <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3" controlId="loginEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"

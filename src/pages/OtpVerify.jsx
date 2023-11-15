@@ -20,6 +20,15 @@ const OtpVerify = () => {
     } else if (i < otpArr.length - 1 && value !== "") {
       inputRefs.current[i + 1].focus();
     }
+
+    function handleBackspaceAndEnter(e, index) {
+      if(e.key === "Backspace" && !e.target.value && index > 0){
+        otpBoxReference.current[index - 1].focus()
+      }
+      if(e.key === "Enter" && e.target.value && index < numberOfDigits-1){
+        otpBoxReference.current[index + 1].focus()
+      }
+    }
   };
 
   

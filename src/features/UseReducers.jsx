@@ -55,7 +55,7 @@ const extraReducers = (builder) => {
       toast.error(`${action?.payload?.message}`, {
         position: toast.POSITION.TOP_RIGHT,
       });
-    });
+    })
 };
 
 export default extraReducers;

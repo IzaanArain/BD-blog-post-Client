@@ -26,6 +26,7 @@ const OtpVerify = () => {
     e.preventDefault();
     const otp_input = otpArr.join("");
     console.log(otp_input)
+    
   };
 
   return (

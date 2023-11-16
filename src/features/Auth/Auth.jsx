@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import extraReducers from "../UseReducers";
+import OtpVerify from "../../pages/OtpVerify";
 
 const initialState = {
   isLoading: false,
@@ -28,6 +29,26 @@ export const signUpApi = createAsyncThunk(
       return { data: data };
     } catch (err) {
       // console.error("Error", err.response.data);
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const OtpVerifyApi = createAsyncThunk(
+  "auth/otpverify",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `${url}/otp_verify`,
+        {
+          email: payload.email,
+          otp_code: payload.otp_code,
+        },
+        { new: true }
+      );
+      const data=await res.data;
+      return {data}
+    } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }
   }
@@ -61,10 +82,10 @@ const AuthSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout:(state,action)=>{
-      state.user=null;
-      state.isLoading=false;
-      state.isError=false;
+    logout: (state, action) => {
+      state.user = null;
+      state.isLoading = false;
+      state.isError = false;
       localStorage.removeItem("persist:blog-user");
     },
   },
@@ -73,5 +94,5 @@ const AuthSlice = createSlice({
 export const signUpUser = (state) => state?.auth?.user;
 export const loggedInUser = (state) => state?.auth?.user;
 
-export const {logout}=AuthSlice.actions;
+export const { logout } = AuthSlice.actions;
 export default AuthSlice.reducer;

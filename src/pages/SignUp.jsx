@@ -8,7 +8,6 @@ import { RiLockPasswordFill as PasswordLogo } from "react-icons/ri";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpApi, signUpUser } from "../features/Auth/Auth";
-import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
@@ -97,7 +96,7 @@ const SignUp = () => {
                           Submit
                         </Button>
                       </div>
-                      
+
                     </Form>
                   </Card.Body>
                 </Col>
@@ -105,7 +104,6 @@ const SignUp = () => {
             </Card>
           </Col>
         </Row>
-        <ToastContainer />
       </Container>
     </>
   );

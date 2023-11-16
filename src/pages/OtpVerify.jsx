@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { OtpVerifyApi,otpVerifyUser} from "../features/Auth/Auth";
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 const OtpVerify = () => {
   const location = useLocation();
   const userEmail = location?.state?.email ? location?.state?.email : "";
@@ -69,7 +68,6 @@ const OtpVerify = () => {
           <input type="submit" id="otp-btn" value="Verify" />
         </form>
       </div>
-      <ToastContainer/>
     </>
   );
 };

@@ -8,7 +8,6 @@ import { RiLockPasswordFill as PasswordLogo } from "react-icons/ri";
 import { useState } from "react";
 import { loginApi, loggedInUser } from "../features/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -62,7 +61,6 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
-      <ToastContainer />
     </>
   );
 };

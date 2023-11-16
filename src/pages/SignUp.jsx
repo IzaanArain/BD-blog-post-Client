@@ -7,7 +7,7 @@ import { AiOutlineMail as MailLogo } from "react-icons/ai";
 import { RiLockPasswordFill as PasswordLogo } from "react-icons/ri";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpApi, signUpUser } from "../features/Auth/Auth";
+import { signUpApi,signUpUser} from "../features/Auth/Auth";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -15,23 +15,20 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const user_created = useSelector(signUpUser);
-  // console.log("user", user_created);
   const navigate=useNavigate();
   const dispatch = useDispatch();
+  const user=useSelector(signUpUser); 
+  // console.log(user)
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // dispatch(
-    //   signUpApi({
-    //     email,
-    //     password,
-    //   })
-    // );
-    navigate("/otp_verify",{state:{email}})
-    // setEmail("");
-    // setPassword("");
-    // setConfirmPassword("");
+    dispatch(
+      signUpApi({
+        email,
+        password,
+      })
+    );  
+    navigate("/otp_verify",{state:{email}});
   };
 
   return (

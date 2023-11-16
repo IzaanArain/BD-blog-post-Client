@@ -10,7 +10,10 @@ const extraReducers = (builder) => {
     .addCase(signUpApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.user = action?.payload?.data;
+      state.user=action?.payload?.data
+      toast.success(`user created succesfully`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     })
     .addCase(signUpApi.rejected, (state, action) => {
       state.isLoading = false;
@@ -48,6 +51,7 @@ const extraReducers = (builder) => {
     .addCase(OtpVerifyApi.fulfilled, (state, action) => {
       state.isLoading = true;
       state.isError = false;
+      state.user=action?.payload?.data
     })
     .addCase(OtpVerifyApi.rejected, (state, action) => {
       state.isLoading = true;

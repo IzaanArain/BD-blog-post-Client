@@ -6,6 +6,7 @@ import OtpVerify from "../../pages/OtpVerify";
 const initialState = {
   isLoading: false,
   isError: false,
+  object: null,
   user: null,
 };
 
@@ -46,8 +47,9 @@ export const OtpVerifyApi = createAsyncThunk(
         },
         { new: true }
       );
-      const data=await res.data;
-      return {data}
+      const data = await res.data;
+      console.log(data)
+      return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }
@@ -91,8 +93,9 @@ const AuthSlice = createSlice({
   },
   extraReducers,
 });
-export const signUpUser = (state) => state?.auth?.user;
 export const loggedInUser = (state) => state?.auth?.user;
+export const signUpUser = (state) => state?.auth?.user;
+export const otpVerifyUser = (state) => state?.auth?.user;
 
 export const { logout } = AuthSlice.actions;
 export default AuthSlice.reducer;

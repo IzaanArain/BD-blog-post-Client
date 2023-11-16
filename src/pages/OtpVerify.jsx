@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { useSelector,useDispatch } from "react-redux";
+import { OtpVerifyApi,otpVerifyUser} from "../features/Auth/Auth";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 const OtpVerify = () => {
   const location = useLocation();
   const userEmail = location?.state?.email ? location?.state?.email : "";
@@ -8,6 +11,9 @@ const OtpVerify = () => {
   const [isError, setIsError] = useState("");
   const navigate = useNavigate();
   const inputRefs = useRef([]);
+  const dispatch=useDispatch();
+  const user=useSelector(otpVerifyUser);
+  // console.log(user);
 
   const otpOnChangeHandler = (e, i) => {
     const value = e.target.value;
@@ -25,8 +31,11 @@ const OtpVerify = () => {
   const otpOnSubmit = (e) => {
     e.preventDefault();
     const otp_input = otpArr.join("");
-    console.log(otp_input)
-    
+    dispatch(OtpVerifyApi({
+      email:userEmail,
+      otp_code:otp_input
+    }));
+    navigate("/login");
   };
 
   return (
@@ -60,6 +69,7 @@ const OtpVerify = () => {
           <input type="submit" id="otp-btn" value="Verify" />
         </form>
       </div>
+      <ToastContainer/>
     </>
   );
 };

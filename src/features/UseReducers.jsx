@@ -33,7 +33,7 @@ const extraReducers = (builder) => {
       state.isLoading = false;
       state.isError = false;
       state.user = action?.payload?.data?.user;
-      toast.success(`Login successful`, {
+      toast.success(`${action?.payload?.data?.message}`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     })

@@ -11,7 +11,7 @@ const extraReducers = (builder) => {
       state.isLoading = false;
       state.isError = false;
       state.user=action?.payload?.data
-      toast.success(`user created succesfully`, {
+      toast.success(`${action?.payload?.data?.message}`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     })
@@ -55,6 +55,9 @@ const extraReducers = (builder) => {
       state.isLoading = true;
       state.isError = false;
       state.user=action?.payload?.data
+      toast.success(`${action?.payload?.data?.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     })
     .addCase(OtpVerifyApi.rejected, (state, action) => {
       state.isLoading = true;

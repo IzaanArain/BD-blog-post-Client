@@ -18,7 +18,6 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(signUpUser);
-  // console.log(user)
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,8 +26,11 @@ const SignUp = () => {
         email,
         password,
       })
-    );
-    navigate("/otp_verify", { state: { email } });
+    )
+    .unwrap()
+    .then(()=>{
+      navigate("/otp_verify", { state: { email } });
+    })
   };
 
   return (

@@ -33,8 +33,10 @@ const OtpVerify = () => {
     dispatch(OtpVerifyApi({
       email:userEmail,
       otp_code:otp_input
-    }));
-    navigate("/login");
+    })) .unwrap()
+    .then(()=>{
+      navigate("/login");
+    })
   };
 
   return (

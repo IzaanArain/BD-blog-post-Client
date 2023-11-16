@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import extraReducers from "../UseReducers";
-import OtpVerify from "../../pages/OtpVerify";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoading: false,
@@ -89,6 +89,9 @@ const AuthSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       localStorage.removeItem("persist:blog-user");
+      toast.success(`logout successful`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     },
   },
   extraReducers,

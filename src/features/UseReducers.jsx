@@ -33,6 +33,9 @@ const extraReducers = (builder) => {
       state.isLoading = false;
       state.isError = false;
       state.user = action?.payload?.data?.user;
+      toast.success(`Login successful`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     })
     .addCase(loginApi.rejected, (state, action) => {
       state.isLoading = false;

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpApi, signUpUser } from "../features/Auth/Auth";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,7 @@ const SignUp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+   if(confirmPassword===password){
     dispatch(
       signUpApi({
         email,
@@ -31,6 +33,11 @@ const SignUp = () => {
       .then(() => {
         navigate("/otp_verify", { state: { email } });
       });
+   }else{
+    toast.error(`password and confirm password do not match`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+   }
   };
 
   return (

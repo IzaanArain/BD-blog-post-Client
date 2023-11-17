@@ -2,13 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import NavBar from "./NavBar";
-import UserList from "./UserList";
 import { Navigate } from "react-router-dom";
 import { loggedInUser } from "../features/Auth/Auth";
 import { useSelector } from "react-redux";
 import OtpVerify from "../pages/OtpVerify";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import CompleteProfile from "../pages/CompleteProfile";
+import UserList from "./UserList";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
@@ -19,7 +20,8 @@ const Layout = () => {
         <NavBar />
         {token ? (
           <Routes>
-            <Route path="/users" element={<UserList />} />
+            <Route path="/users" element={<UserList/>} />
+            <Route path="/complete_profile" element={<CompleteProfile/>} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>
         ) : (

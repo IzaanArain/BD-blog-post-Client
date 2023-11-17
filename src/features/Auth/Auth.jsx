@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const initialState = {
   isLoading: false,
   isError: false,
-  object: null,
   user: null,
 };
 

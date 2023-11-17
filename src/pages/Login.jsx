@@ -27,6 +27,15 @@ const Login = () => {
       })
     )
       .unwrap()
+      .then(({data})=>{
+        console.log(data)
+        const is_complete=data?.user?.is_complete;
+        if(is_complete){
+          navigate("/users")
+        }else{
+          navigate("/complete_profile")
+        }
+      })
       .catch((err) => {
         console.log("Error", err);
         const msg = err?.message;

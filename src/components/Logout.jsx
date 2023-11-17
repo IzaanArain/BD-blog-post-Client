@@ -1,6 +1,6 @@
 import { logout } from "../features/Auth/Auth";
 import { useDispatch } from "react-redux";
-
+import { Button } from "react-bootstrap";
 const Logout = () => {
     const dispatch=useDispatch();
 
@@ -10,7 +10,7 @@ const Logout = () => {
     }
   return (
     <>
-    <button onClick={logoutAction}>Logout</button>
+    <Button onClick={logoutAction} variant="outline-danger" className="mx-3">Logout</Button>
     </>
   )
 }

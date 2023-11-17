@@ -73,9 +73,12 @@ const Login = () => {
                   </Form.Text>
                 </Col>
               </Form.Group>
+
+              <div className="d-flex justify-content-center">
                 <Button variant="primary" type="submit" size="sm">
                   Submit
                 </Button>
+              </div>
             </Form>
           </Col>
         </Row>

@@ -31,7 +31,7 @@ const Login = () => {
     <>
       <Container>
         <Row>
-          <Col className="d-flex justify-content-center">
+          <Col>
             <Form onSubmit={onSubmit}>
               <Form.Group as={Row} className="mb-3 mt-3" controlId="loginEmail">
                 <Form.Label column sm="2">

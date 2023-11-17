@@ -95,8 +95,32 @@ export const ForgotPasswordApi = createAsyncThunk(
           },
         }
       );
-      const data=await res.data;
-      return{data};
+      const data = await res.data;
+      return { data };
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const resetPasswordApi = createAsyncThunk(
+  "auth/reset_password",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `${url}/reset_password`,
+        {
+          email: payload.email,
+          password: payload.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.data;
+      return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }

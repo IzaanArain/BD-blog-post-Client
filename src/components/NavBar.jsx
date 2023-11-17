@@ -15,7 +15,7 @@ const NavBar = () => {
           <Navbar.Brand href="#home">BLOG</Navbar.Brand>
           {token ? (
             <Nav className="me-auto">
-               <Link to="/users">People</Link>
+               <Nav.Link to="/users">People</Nav.Link>
             </Nav>
           ) : (
             <Nav className="me-auto">

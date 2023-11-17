@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
-import { OtpVerifyApi,otpVerifyUser} from "../features/Auth/Auth";
+import { useSelector, useDispatch } from "react-redux";
+import { OtpVerifyApi, otpVerifyUser } from "../features/Auth/Auth";
 import { toast } from "react-toastify";
 const OtpVerify = () => {
   const location = useLocation();
@@ -9,8 +9,8 @@ const OtpVerify = () => {
   const [otpArr, setOtpArr] = useState(["", "", "", "", "", ""]);
   const navigate = useNavigate();
   const inputRefs = useRef([]);
-  const dispatch=useDispatch();
-  const user=useSelector(otpVerifyUser);
+  const dispatch = useDispatch();
+  const user = useSelector(otpVerifyUser);
   // console.log(user);
 
   const otpOnChangeHandler = (e, i) => {
@@ -25,22 +25,25 @@ const OtpVerify = () => {
       inputRefs.current[i + 1].focus();
     }
   };
-  
+
   const otpOnSubmit = (e) => {
     e.preventDefault();
     const otp_input = otpArr.join("");
-    dispatch(OtpVerifyApi({
-      email:userEmail,
-      otp_code:otp_input
-    })) .unwrap()
-    .then((data)=>{
-      const is_forgot_password=data?.is_forgot_password;
-      if(is_forgot_password){
-        navigate("/reset_password")
-      }else{
-        navigate("/login");
-      }
-    })
+    dispatch(
+      OtpVerifyApi({
+        email: userEmail,
+        otp_code: otp_input,
+      })
+    )
+      .unwrap()
+      .then(({ data }) => {
+        const is_forgot_password = data?.is_forgot_password;
+        if (is_forgot_password) {
+          navigate("/reset_password",{state:{email:userEmail}});
+        } else {
+          navigate("/login");
+        }
+      });
   };
 
   return (

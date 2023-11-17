@@ -17,7 +17,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(loggedInUser);
-  // console.log("logged In User", user);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +54,8 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                    // pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                    // title="enter valid email"
                   />
                 </Col>
               </Form.Group>

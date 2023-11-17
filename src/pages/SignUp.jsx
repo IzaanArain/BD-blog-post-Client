@@ -44,8 +44,8 @@ const SignUp = () => {
   return (
     <>
       <Container>
-        <Row>
-          <Col>
+        <Row className="d-flex justify-content-center">
+          <Col lg={6}>
             <Form onSubmit={onSubmit}>
               <Form.Group as={Row} className="mb-3 mt-3">
                 <Form.Label column sm="2" htmlFor="email">
@@ -102,7 +102,7 @@ const SignUp = () => {
                 </Col>
               </Form.Group>
 
-              <div className="d-flex justify-content-center">
+              <div className="d-grid">
                 <Button variant="primary" type="submit" size="sm">
                   Submit
                 </Button>

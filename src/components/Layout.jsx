@@ -8,6 +8,7 @@ import { loggedInUser } from "../features/Auth/Auth";
 import { useSelector } from "react-redux";
 import OtpVerify from "../pages/OtpVerify";
 import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
@@ -27,6 +28,7 @@ const Layout = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/otp_verify" element={<OtpVerify/>} />
             <Route path="/forgot_password" element={<ForgotPassword/>} />
+            <Route path="/reset_password" element={<ResetPassword/>} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}

@@ -40,6 +40,8 @@ const Login = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
+                  pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                 />
               </Form.Group>
 
@@ -51,6 +53,9 @@ const Login = () => {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
                 />
               </Form.Group>
 

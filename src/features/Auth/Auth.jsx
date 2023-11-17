@@ -48,7 +48,7 @@ export const OtpVerifyApi = createAsyncThunk(
         { new: true }
       );
       const data = await res.data;
-      console.log(data)
+      // console.log(data)
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);

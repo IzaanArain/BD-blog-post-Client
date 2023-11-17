@@ -27,10 +27,10 @@ const SignUp = () => {
         password,
       })
     )
-    .unwrap()
-    .then(()=>{
-      navigate("/otp_verify", { state: { email } });
-    })
+      .unwrap()
+      .then(() => {
+        navigate("/otp_verify", { state: { email } });
+      });
   };
 
   return (
@@ -66,6 +66,7 @@ const SignUp = () => {
                           name="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          required
                         />
                       </Form.Group>
 
@@ -78,6 +79,9 @@ const SignUp = () => {
                           name="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
+                          required
+                          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                          title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
                         />
                       </Form.Group>
 
@@ -90,6 +94,9 @@ const SignUp = () => {
                           name="confirmPassword"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                          title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
                         />
                       </Form.Group>
 
@@ -98,7 +105,6 @@ const SignUp = () => {
                           Submit
                         </Button>
                       </div>
-
                     </Form>
                   </Card.Body>
                 </Col>

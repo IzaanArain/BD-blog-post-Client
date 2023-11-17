@@ -37,7 +37,6 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log("Error", err);
         const msg = err?.message;
         if (msg === "user is not verified") {
           navigate("/otp_verify", { state: { email: email } });
@@ -62,7 +61,7 @@ const Login = () => {
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
+                    // required
                     // pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                     // title="enter valid email"
                   />
@@ -80,10 +79,10 @@ const Login = () => {
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                     aria-describedby="passwordHelpBlock"
-                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-                    title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
+                    // required
+                    // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                    // title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
                   />
 
                   <div className="d-flex flex-column">

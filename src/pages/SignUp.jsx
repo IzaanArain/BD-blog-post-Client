@@ -11,6 +11,7 @@ import { signUpApi, signUpUser } from "../features/Auth/Auth";
 import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -80,6 +81,11 @@ const SignUp = () => {
                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                     title="Password should include at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
                   />
+                  <Form.Text id="passwordHelpBlock" muted>
+                    Password should include at least 8 characters, one uppercase
+                    letter, one lowercase letter, one digit, and one special
+                    character.
+                  </Form.Text>
                 </Col>
               </Form.Group>
 
@@ -102,10 +108,19 @@ const SignUp = () => {
                 </Col>
               </Form.Group>
 
-              <div className="d-grid">
-                <Button variant="primary" type="submit" size="sm">
+              <div className="d-flex flex-column align-items-center">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  size="md"
+                  className="mb-3"
+                  style={{ width: "100%" }}
+                >
                   Submit
                 </Button>
+                <Form.Text style={{ fontSize: "16px" }}>
+                  already a memeber ? <Link to="/login">Login</Link>
+                </Form.Text>
               </div>
             </Form>
           </Col>

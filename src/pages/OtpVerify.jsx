@@ -7,7 +7,6 @@ const OtpVerify = () => {
   const location = useLocation();
   const userEmail = location?.state?.email ? location?.state?.email : "";
   const [otpArr, setOtpArr] = useState(["", "", "", "", "", ""]);
-  const [isError, setIsError] = useState("");
   const navigate = useNavigate();
   const inputRefs = useRef([]);
   const dispatch=useDispatch();
@@ -34,20 +33,20 @@ const OtpVerify = () => {
       email:userEmail,
       otp_code:otp_input
     })) .unwrap()
-    .then(()=>{
-      navigate("/login");
+    .then((data)=>{
+      const is_forgot_password=data?.is_forgot_password;
+      if(is_forgot_password){
+        navigate("/reset_password")
+      }else{
+        navigate("/login");
+      }
     })
   };
 
   return (
     <>
       <div className="otp-verify-page">
-        <h1>OTP CODE</h1>
-        {isError && (
-          <div id="error_block">
-            <h2>{isError}</h2>
-          </div>
-        )}
+        <h1>OTP CODE has been emailed to you</h1>
         <form onSubmit={otpOnSubmit}>
           <div className="otp-input-container">
             {otpArr.map((number, i) => {

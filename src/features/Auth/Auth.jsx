@@ -80,6 +80,29 @@ export const loginApi = createAsyncThunk(
   }
 );
 
+export const ForgotPasswordApi = createAsyncThunk(
+  "auth/forgot_password",
+  async (payload, thunkAPI) => {
+    try {
+      const res = axios.post(
+        `${url}/forgot_password`,
+        {
+          email: payload.email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data=await res.data;
+      return{data};
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const AuthSlice = createSlice({
   name: "auth",
   initialState,

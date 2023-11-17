@@ -46,12 +46,12 @@ const SignUp = () => {
       <Container>
         <Row className="d-flex justify-content-center">
           <Col lg={6}>
-            <Form onSubmit={onSubmit}>
-              <Form.Group as={Row} className="mb-3 mt-3">
-                <Form.Label column sm="2" htmlFor="email">
+            <Form onSubmit={onSubmit} className="mt-3">
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm="3" htmlFor="email">
                   Email address
                 </Form.Label>
-                <Col sm={10}>
+                <Col sm={9}>
                   <Form.Control
                     type="email"
                     placeholder="Enter email"
@@ -65,10 +65,10 @@ const SignUp = () => {
               </Form.Group>
 
               <Form.Group as={Row} className="mb-3">
-                <Form.Label column sm="2" htmlFor="password">
+                <Form.Label column sm="3" htmlFor="password">
                   Password
                 </Form.Label>
-                <Col sm={10}>
+                <Col sm={9}>
                   <Form.Control
                     type="password"
                     placeholder="Password"
@@ -84,10 +84,10 @@ const SignUp = () => {
               </Form.Group>
 
               <Form.Group as={Row} className="mb-3">
-                <Form.Label column sm="2" htmlFor="confirmPassword">
+                <Form.Label column sm="3" htmlFor="confirmPassword">
                   Confirm Password
                 </Form.Label>
-                <Col sm={10}>
+                <Col sm={9}>
                   <Form.Control
                     type="password"
                     placeholder="Confirm password"

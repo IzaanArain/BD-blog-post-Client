@@ -16,6 +16,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordVisibilty,setPasswordVisibilty]=useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(signUpUser);

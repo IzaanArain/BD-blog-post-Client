@@ -1,4 +1,4 @@
-import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi } from "./Auth/Auth";
+import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi,completeProfileApi } from "./Auth/Auth";
 import { toast } from "react-toastify";
 
 const extraReducers = (builder) => {
@@ -97,6 +97,26 @@ const extraReducers = (builder) => {
     })
     .addCase(resetPasswordApi.rejected,(state,action)=>{
       state.isLoading = false;
+      state.isError = false;
+      toast.error(`${action?.payload?.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    })
+
+    .addCase(completeProfileApi.pending,(state,action)=>{
+      state.isLoading = true;
+      state.isError = false;
+    })
+    .addCase(completeProfileApi.fulfilled,(state,action)=>{
+      state.isLoading = true;
+      state.isError = false;
+      state.user=action?.payload?.data?.user;
+      toast.success(`${action?.payload?.data?.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    })
+    .addCase(completeProfileApi.rejected,(state,action)=>{
+      state.isLoading = true;
       state.isError = false;
       toast.error(`${action?.payload?.message}`, {
         position: toast.POSITION.TOP_RIGHT,

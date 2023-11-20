@@ -5,13 +5,7 @@ import Col from "react-bootstrap/Col";
 const UserList = () => {
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
-            <h1>users</h1>
-          </Col>
-        </Row>
-      </Container>
+      <h1>users</h1>
     </>
   );
 };

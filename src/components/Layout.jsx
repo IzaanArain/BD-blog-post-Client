@@ -10,6 +10,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import UserList from "./UserList";
+import ChatList from "../pages/ChatList";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
@@ -20,7 +21,7 @@ const Layout = () => {
         <NavBar />
         {token ? (
           <Routes>
-            <Route path="/users" element={<UserList/>} />
+            <Route path="/users" element={<ChatList/>} />
             <Route path="/complete_profile" element={<CompleteProfile/>} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import extraReducers from "../UseReducers";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const data = JSON.parse(localStorage.getItem("persist:blog-user"))
@@ -42,4 +42,6 @@ export const getAllUsersApi = createAsyncThunk(
     extraReducers
   })
 
+  export const getAlUsers=(state)=>state?.chat?.users;
+  
   export default ChatSlice.reducer;

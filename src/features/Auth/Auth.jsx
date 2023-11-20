@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import extraReducers from "../UseReducers";
+import extraReducers from "../../hooks/UseReducers";
 import { toast } from "react-toastify";
 
 const data = JSON.parse(localStorage.getItem("persist:blog-user"))

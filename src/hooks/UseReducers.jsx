@@ -1,5 +1,5 @@
-import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi,completeProfileApi } from "./Auth/Auth";
-import { getAllUsersApi } from "./Auth/ChatSlice";
+import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi,completeProfileApi } from "../features/Auth/Auth";
+// import { getAllUsersApi } from "../features/Chat/ChatSlice";
 import { toast } from "react-toastify";
 
 const extraReducers = (builder) => {
@@ -124,25 +124,25 @@ const extraReducers = (builder) => {
       });
     })
 
-    .addCase(getAllUsersApi.pending,(state,action)=>{
-      state.isLoading = true;
-      state.isError = false;
-    })
-    .addCase(getAllUsersApi.fulfilled,(state,action)=>{
-      state.isLoading = false;
-      state.isError = false;
-      state.users=action?.payload?.data?.users
-      toast.success(`${action?.payload?.data?.message}`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    })
-    .addCase(getAllUsersApi.rejected,(state,action)=>{
-      state.isLoading = false;
-      state.isError = true;
-      toast.error(`${action?.payload?.message}`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    })
+    // .addCase(getAllUsersApi.pending,(state,action)=>{
+    //   state.isLoading = true;
+    //   state.isError = false;
+    // })
+    // .addCase(getAllUsersApi.fulfilled,(state,action)=>{
+    //   state.isLoading = false;
+    //   state.isError = false;
+    //   state.users=action?.payload?.data?.users
+    //   toast.success(`${action?.payload?.data?.message}`, {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // })
+    // .addCase(getAllUsersApi.rejected,(state,action)=>{
+    //   state.isLoading = false;
+    //   state.isError = true;
+    //   toast.error(`${action?.payload?.message}`, {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // })
 };
 
 export default extraReducers;

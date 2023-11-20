@@ -1,6 +1,6 @@
 import { configureStore,combineReducers } from "@reduxjs/toolkit";
 import AuthReducer from "../features/Auth/Auth"
-import ChatReducer from "../features/Auth/ChatSlice";
+import ChatReducer from "../features/Chat/ChatSlice"
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';

@@ -1,23 +1,28 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
+  const { name, phone, image } = user;
+  const url = `http://localhost:5000`;
   return (
     <>
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img
+          variant="top"
+          src={`${url}/${image}`}
+          onError={(e) => {
+            e.target.src =
+              "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
+          }}
+        />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>phone:{phone}</Card.Text>
+        </Card.Body>
+      </Card>
     </>
-  )
-}
+  );
+};
 
-export default UserCard
+export default UserCard;

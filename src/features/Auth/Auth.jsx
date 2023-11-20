@@ -2,11 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import extraReducers from "../UseReducers";
 import { toast } from "react-toastify";
-import { json } from "react-router-dom";
 
-const data=JSON.parse(localStorage.getItem("persist:blog-user")) ? JSON.parse(localStorage.getItem("persist:blog-user")) : "";
-const user=JSON.parse(data?.user) ? JSON.parse(data?.user) : "";
-const token=user?.user_auth;
+const data = JSON.parse(localStorage.getItem("persist:blog-user"))
+  ? JSON.parse(localStorage.getItem("persist:blog-user"))
+  : "";
+const user = JSON.parse(data?.user) ? JSON.parse(data?.user) : "";
+const token = user?.user_auth;
 
 const initialState = {
   isLoading: false,
@@ -129,23 +130,24 @@ export const resetPasswordApi = createAsyncThunk(
   }
 );
 
-export const completeProfileApi=createAsyncThunk(
-  "auth/complete_profile",async(payload,thunkAPI)=>{
-    try{
+export const completeProfileApi = createAsyncThunk(
+  "auth/complete_profile",
+  async (payload, thunkAPI) => {
+    try {
       // console.log("payload",payload)
-      const res=await axios.post(`${url}/complete_profile`,payload,{
-        headers:{
-          "Content-Type":"multipart/form-data",
-          authorization: `Bearer ${token}`
-        }
+      const res = await axios.post(`${url}/complete_profile`, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${token}`,
+        },
       });
-      const data=await res.data;
-      return {data};
-    }catch(err){
+      const data = await res.data;
+      return { data };
+    } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }
   }
-)
+);
 
 const AuthSlice = createSlice({
   name: "auth",

@@ -2,3 +2,8 @@
     background: none;
     border: none;
 }
+
+.user-list{
+    height: 90vh;
+    overflow-y: scroll;
+}

@@ -7,11 +7,16 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 
 const UserCard = ({ user }) => {
-  const { name, email, image } = user;
+  const { name, email, image,_id } = user;
   const url = `http://localhost:5000`;
+
+  const getChat=(e)=>{
+    e.preventDefault();
+    
+  }
   return (
     <>
-      <div>
+      <div onClick={getChat}>
         <Card className="mb-3 p-2">
           <Row>
             <Col

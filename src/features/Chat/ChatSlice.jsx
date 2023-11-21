@@ -28,7 +28,7 @@ export const getAllUsersApi = createAsyncThunk(
         },
       });
       const data = await res.data;
-      
+
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);

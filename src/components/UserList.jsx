@@ -8,24 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 
 const UserList = () => {
   const dispatch = useDispatch();
-  const userList = useSelector(getAllUsers);
 
   useEffect(() => {
     dispatch(getAllUsersApi());
   }, [dispatch]);
+
+  const userList = useSelector(getAllUsers);
   return (
     <>
+      <div className="user-list">
       {userList.map((user, i) => {
         return (
           <>
-            <Fragment key={i}>
               <div className="my-3">
               <UserCard user={user}/>
               </div>
-            </Fragment>
           </>
         );
       })}
+      </div>
     </>
   );
 };

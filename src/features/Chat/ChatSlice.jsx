@@ -13,7 +13,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   messages: null,
-  users: null,
+  users: [],
 };
 
 const url = `http://localhost:5000/api/v1/user`;
@@ -28,7 +28,7 @@ export const getAllUsersApi = createAsyncThunk(
         },
       });
       const data = await res.data;
-      console.log(data)
+      
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);

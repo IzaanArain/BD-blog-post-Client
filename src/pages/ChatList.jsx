@@ -9,7 +9,7 @@ const ChatList = () => {
     <>
       <Container fluid>
         <Row>
-            <Col lg={6}>
+            <Col lg={4}>
             <UserList/>
             </Col>
             <Col>

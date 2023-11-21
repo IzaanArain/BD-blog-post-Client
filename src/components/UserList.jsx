@@ -15,15 +15,17 @@ const UserList = () => {
   }, [dispatch]);
   return (
     <>
-      {/* {userList.map((user, i) => {
+      {userList.map((user, i) => {
         return (
           <>
             <Fragment key={i}>
-              <UserCard user={user} />
+              <div className="my-3">
+              <UserCard user={user}/>
+              </div>
             </Fragment>
           </>
         );
-      })} */}
+      })}
     </>
   );
 };

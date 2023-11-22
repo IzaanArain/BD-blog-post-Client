@@ -19,11 +19,11 @@ const UserList = () => {
       <div className="user-list">
       {userList.map((user, i) => {
         return (
-          <>
+          <Fragment key={i}>
               <div className="my-3">
               <UserCard user={user}/>
               </div>
-          </>
+          </Fragment>
         );
       })}
       </div>

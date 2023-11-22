@@ -40,6 +40,7 @@ const ChatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {},
+  // extraReducers
   extraReducers:(builder)=>{
     builder
     .addCase(getAllUsersApi.pending,(state,action)=>{

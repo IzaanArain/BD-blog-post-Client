@@ -1,5 +1,6 @@
+// import { createSlice } from "@reduxjs/toolkit";
 import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi,completeProfileApi } from "../features/Auth/Auth";
-// import { getAllUsersApi } from "../features/Chat/ChatSlice";
+import { getAllUsersApi } from "../features/Chat/ChatSlice";
 import { toast } from "react-toastify";
 
 const extraReducers = (builder) => {

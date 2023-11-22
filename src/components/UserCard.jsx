@@ -6,11 +6,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import DefaultImage from "../assets/NoImage.jpg"
-
+import { useDispatch } from "react-redux";
 const UserCard = ({ user }) => {
   const { name, email, image,_id } = user;
+  const dispatch=useDispatch();
+
   const getChat=(e)=>{     
     e.preventDefault();
+    console.log("clicked")
   }
   
   return (

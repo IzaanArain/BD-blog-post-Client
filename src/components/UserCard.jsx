@@ -13,7 +13,6 @@ const UserCard = ({ user }) => {
 
   const getChat=(e)=>{     
     e.preventDefault();
-    console.log("clicked")
   }
   
   return (

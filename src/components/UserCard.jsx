@@ -12,7 +12,7 @@ const UserCard = ({ user }) => {
   const getChat=(e)=>{     
     e.preventDefault();
   }
-  // console.log(`${import.meta.env.VITE_API_URL}${image}`)
+  
   return (
     <>
       <div onClick={getChat}>

@@ -6,13 +6,23 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import DefaultImage from "../assets/NoImage.jpg"
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { useSocket } from "../features/Messages/MessageSlice";
+import { loggedInUser } from "../features/Auth/Auth";
+
 const UserCard = ({ user }) => {
   const { name, email, image,_id } = user;
   const dispatch=useDispatch();
+  const socket=useSelector(useSocket)
+  const sender=useSelector(loggedInUser);
+  const sender_id=sender?._id;
 
   const getChat=(e)=>{     
     e.preventDefault();
+    // console.log(socket)
+    // console.log("sender_id",sender_id)
+    // console.log("reciever_id",_id)
+    socket.emit("get_all_messages",{sender_id:sender_id,receiver_id:_id})
   }
   
   return (

@@ -7,3 +7,55 @@
     height: 90vh;
     overflow-y: scroll;
 }
+.chat{
+height: 90vh;
+}
+
+.chat-header{
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+.chat-body {
+    height: 80%;
+    background-color: azure;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px;
+    border: solid 2px black;
+  }
+
+.message {
+    width: 45%;
+    padding: 10px;
+  }
+  #you {
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    align-self: flex-end;
+  }
+  
+  #other {
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 20px;
+  }
+
+  .chat-footer {
+    height: 10%;
+    margin-top: 10px;
+  }
+  
+  .chat-footer input {
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+  }
+  .chat-footer button {
+    width: 10%;
+    padding: 10px;
+    height: 100%;
+  }

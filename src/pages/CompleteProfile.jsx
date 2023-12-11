@@ -9,7 +9,7 @@ import { completeProfileApi } from "../features/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/Auth/Auth";
 
-const url = `http://localhost:5000`;
+const url = `http://localhost:5001`;
 
 const CompleteProfile = () => {
   const user = useSelector(loggedInUser);
@@ -27,7 +27,7 @@ const CompleteProfile = () => {
   formData.append("name", name);
   formData.append("phone", phone);
   formData.append("profile_image", image);
-
+  console.log("form-data",formData)
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("test image", image);

@@ -16,7 +16,7 @@ const initialState = {
   users: [],
 };
 
-const url = `http://localhost:5000/api/v1/user`;
+const url = `http://localhost:5001/api/v1/user`;
 
 export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",

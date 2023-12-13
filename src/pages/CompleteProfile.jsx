@@ -8,8 +8,8 @@ import Image from "react-bootstrap/Image";
 import { completeProfileApi } from "../features/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/Auth/Auth";
-
-const url = `http://localhost:5001`;
+import  NoImage from "../assets/NoImage.jpg"
+const url = `http://localhost:5000`;
 
 const CompleteProfile = () => {
   const user = useSelector(loggedInUser);
@@ -30,7 +30,7 @@ const CompleteProfile = () => {
   console.log("form-data",formData)
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("test image", image);
+    // console.log("test image", image);
     dispatch(completeProfileApi(formData));
   };
   return (
@@ -46,7 +46,7 @@ const CompleteProfile = () => {
               width={200}
               height={200}
               onError={(e)=>{
-                e.target.src="https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg"
+                e.target.src={NoImage}
               }}
             />
           </Col>

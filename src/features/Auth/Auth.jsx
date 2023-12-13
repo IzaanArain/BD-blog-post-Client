@@ -3,9 +3,9 @@ import axios from "axios";
 import extraReducers from "../../hooks/UseReducers";
 import { toast } from "react-toastify";
 
-// const data = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
-// const user = data?.user ? data?.user : "";
-// const token = user?.user_auth;
+const user= JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
+const token = user?.user_auth;
+// axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
 
 const initialState = {
   isLoading: false,

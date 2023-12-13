@@ -36,8 +36,9 @@ const extraReducers = (builder) => {
     .addCase(loginApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      localStorage.setItem("user",JSON.stringify(action?.payload?.data?.user))
-      axios.defaults.headers.common['Authorization']=`Bearer ${action?.payload?.data?.user?.user_auth}`
+      localStorage.setItem("user",JSON.stringify(action?.payload?.data?.user));
+      // console.log("Bearer token",action?.payload?.data?.user?.user_auth)
+      // axios.defaults.headers.common['Authorization']=`Bearer ${action?.payload?.data?.user?.user_auth}`
       state.user = action?.payload?.data?.user;
       toast.success(`${action?.payload?.data?.message}`, {
         position: toast.POSITION.TOP_RIGHT,

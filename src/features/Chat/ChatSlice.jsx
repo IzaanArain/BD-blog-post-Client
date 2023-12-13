@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// const data = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
-// const user = data?.user ? data?.user : "";
-// const token = user?.user_auth;
-
+const user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
+const token = user?.user_auth;
+// axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
+console.log("token",token)
 const initialState = {
   isLoading: false,
   isError: false,
@@ -20,14 +20,13 @@ export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",
   async (payload, thunkAPI) => {
     try {
-      console.log("token",token)
-      const res = await axios.get(`${url}/all_users`, {
-        // headers: {
-        //   authorization: `Bearer ${token}`,
-        // },
+      const res = await axios.get(`${url}/all_users`,{
+        headers:{
+          "Authorization":`Bearer ${token}`
+        }
       });
       const data = await res.data;
-      // console.log("getAllUsersApi",data)
+      console.log("getAllUsersApi",data)
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
@@ -57,6 +56,7 @@ const ChatSlice = createSlice({
     .addCase(getAllUsersApi.rejected,(state,action)=>{
       state.isLoading = false;
       state.isError = true;
+      console.log(action?.payload)
       toast.error(`${action?.payload?.message}`, {
         position: toast.POSITION.TOP_RIGHT,
       });

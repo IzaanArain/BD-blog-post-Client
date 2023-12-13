@@ -3,11 +3,9 @@ import axios from "axios";
 import extraReducers from "../../hooks/UseReducers";
 import { toast } from "react-toastify";
 
-const data = JSON.parse(localStorage.getItem("persist:blog-user"))
-  ? JSON.parse(localStorage.getItem("persist:blog-user"))
-  : "";
-const user = JSON.parse(data?.user) ? JSON.parse(data?.user) : "";
-const token = user?.user_auth;
+// const data = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
+// const user = data?.user ? data?.user : "";
+// const token = user?.user_auth;
 
 const initialState = {
   isLoading: false,
@@ -157,6 +155,7 @@ const AuthSlice = createSlice({
       state.user = null;
       state.isLoading = false;
       state.isError = false;
+      localStorage.removeItem("user");
       localStorage.removeItem("persist:blog-user");
       toast.success(`logout successful`, {
         position: toast.POSITION.TOP_RIGHT,

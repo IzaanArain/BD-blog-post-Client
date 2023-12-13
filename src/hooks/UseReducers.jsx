@@ -2,6 +2,7 @@
 import { signUpApi, loginApi, OtpVerifyApi,ForgotPasswordApi,resetPasswordApi,completeProfileApi } from "../features/Auth/Auth";
 import { getAllUsersApi } from "../features/Chat/ChatSlice";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const extraReducers = (builder) => {
   builder
@@ -35,6 +36,8 @@ const extraReducers = (builder) => {
     .addCase(loginApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
+      localStorage.setItem("user",JSON.stringify(action?.payload?.data?.user))
+      axios.defaults.headers.common['Authorization']=`Bearer ${action?.payload?.data?.user?.user_auth}`
       state.user = action?.payload?.data?.user;
       toast.success(`${action?.payload?.data?.message}`, {
         position: toast.POSITION.TOP_RIGHT,

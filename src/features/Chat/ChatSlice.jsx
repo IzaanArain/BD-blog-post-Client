@@ -3,11 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const data = JSON.parse(localStorage.getItem("persist:blog-user"))
-  ? JSON.parse(localStorage.getItem("persist:blog-user"))
-  : "";
-const user = JSON.parse(data?.user) ? JSON.parse(data?.user) : "";
-const token = user?.user_auth;
+// const data = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
+// const user = data?.user ? data?.user : "";
+// const token = user?.user_auth;
 
 const initialState = {
   isLoading: false,
@@ -22,11 +20,11 @@ export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",
   async (payload, thunkAPI) => {
     try {
-      // console.log("token",token)
+      console.log("token",token)
       const res = await axios.get(`${url}/all_users`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   authorization: `Bearer ${token}`,
+        // },
       });
       const data = await res.data;
       // console.log("getAllUsersApi",data)

@@ -10,9 +10,10 @@ const UserList = () => {
   const dispatch = useDispatch();
   const user=useSelector(loggedInUser);
   const user_id=user?._id
+  
   useEffect(() => {
     dispatch(getAllUsersApi());
-  }, [dispatch]);
+  }, []);
 
   const userList = useSelector(getAllUsers);
   return (

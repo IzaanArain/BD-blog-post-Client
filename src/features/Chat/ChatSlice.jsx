@@ -7,6 +7,7 @@ const user = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.
 const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
 console.log("token",token)
+
 const initialState = {
   isLoading: false,
   isError: false,

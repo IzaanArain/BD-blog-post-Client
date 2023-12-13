@@ -156,7 +156,7 @@ const AuthSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       localStorage.removeItem("user");
-      localStorage.removeItem("persist:blog-user");
+      // localStorage.removeItem("persist:blog-user");
       toast.success(`logout successful`, {
         position: toast.POSITION.TOP_RIGHT,
       });

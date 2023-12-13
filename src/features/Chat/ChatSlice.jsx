@@ -16,12 +16,13 @@ const initialState = {
   users: [],
 };
 
-const url = `http://localhost:5001/api/v1/user`;
+const url = `http://localhost:5000/api/v1/user`;
 
 export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",
   async (payload, thunkAPI) => {
     try {
+      // console.log("token",token)
       const res = await axios.get(`${url}/all_users`, {
         headers: {
           authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ const ChatList = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row>
           <Col>
             <UserList />

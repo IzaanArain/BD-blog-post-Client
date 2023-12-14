@@ -16,7 +16,8 @@ const UserCard = ({ user }) => {
   const socket = useSelector(useSocket);
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
-  const navigate=useNavigate()
+  const navigate=useNavigate();
+
   const getChat = (e) => {
     e.preventDefault();
     // console.log(socket)
@@ -27,7 +28,6 @@ const UserCard = ({ user }) => {
 
   return (
     <>
-      {/* <div onClick={getChat}> */}
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
@@ -40,10 +40,12 @@ const UserCard = ({ user }) => {
           <Card.Text>Name : {name}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Button onClick={()=>navigate("/chat")}>...start Chatting</Button>
+          <Button onClick={(e)=>{
+             getChat(e)
+            navigate("/chat")
+          }}>...start Chatting</Button>
         </Card.Footer>
       </Card>
-      {/* </div> */}
     </>
   );
 };

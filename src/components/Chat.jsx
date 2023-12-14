@@ -13,10 +13,11 @@ const Chat = () => {
   const socket = useSelector(useSocket);
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
+
   useEffect(() => {
     if (socket) {
       socket.on("get_all_messages", (data) => {
-        setMessages((prev) => [...data]);
+        setMessages((prev) => [...prev,...data]);
       });
     }
   }, [socket]);

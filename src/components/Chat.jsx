@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../features/Messages/MessageSlice";
 import { loggedInUser } from "../features/Auth/Auth";
+
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -20,6 +21,19 @@ const Chat = () => {
     }
   }, [socket]);
   // console.log("messages", messages);
+
+  const sendMessage=async(e)=>{
+    e.preventDefault();
+    if (currentMessage !== "") {
+      const messageData = {
+      };
+      await socket.emit("send_message", messageData);
+      setMessages((prev) => {
+        return [...prev, messageData];
+      });
+      setCurrentMessage("")
+    }
+  }
   return (
     <>
       <Row>
@@ -59,7 +73,7 @@ const Chat = () => {
             //   e.key==="Enter" && sendMessage()
             // }}
           />
-          <button>&#9658;</button>
+          <button onClick={sendMessage}>&#9658;</button>
         </div>
           </div>
         </Col>

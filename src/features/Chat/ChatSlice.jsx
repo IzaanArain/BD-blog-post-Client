@@ -1,8 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import extraReducers from "../../hooks/UseReducers";
+import extraReducers from "../../hooks/UseReducers";
 import { toast } from "react-toastify";
-
 // const user = JSON.parse(localStorage.getItem("user")) //? JSON.parse(localStorage.getItem("user")) : "";
 // const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
@@ -16,7 +15,7 @@ const initialState = {
   users: [],
 };
 
-const url = `http://localhost:5000/api/v1/user`;
+// const url = `http://localhost:5000/api/v1/user`;
 
 export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",
@@ -24,7 +23,7 @@ export const getAllUsersApi = createAsyncThunk(
     try {
       // const user = JSON.parse(localStorage.getItem("user"));
       // const token = user?.user_auth;
-      const res = await axios.get(`${url}/all_users`, 
+      const res = await axios.get(`user/all_users`, 
       // {
       //   headers: {
       //     Authorization: `Bearer ${token}`,
@@ -44,7 +43,6 @@ const ChatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {},
-  // extraReducers
   extraReducers: (builder) => {
     builder
       .addCase(getAllUsersApi.pending, (state, action) => {
@@ -66,7 +64,7 @@ const ChatSlice = createSlice({
         toast.error(`${action?.payload?.message}`, {
           position: toast.POSITION.TOP_RIGHT,
         });
-      });
+      })
   },
 });
 

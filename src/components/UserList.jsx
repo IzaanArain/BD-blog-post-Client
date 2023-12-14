@@ -12,21 +12,25 @@ const UserList = () => {
   const user_id=user?._id
   
   useEffect(() => {
-    dispatch(getAllUsersApi());
+    let mount = true
+    if(mount){
+      dispatch(getAllUsersApi());
+    }
+    return () => {
+      mount = false
+  }
   }, []);
 
   const userList = useSelector(getAllUsers);
   return (
     <>
-      <div className="user-list">
+      <div className="d-flex flex-wrap">
       {userList.map((user, i) => {
         const id=user?._id
         if(user_id!==id){
           return (
             <Fragment key={i}>
-                <div className="my-3">
                 <UserCard user={user}/>
-                </div>
             </Fragment>
           );
         }

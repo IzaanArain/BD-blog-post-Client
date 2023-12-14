@@ -20,12 +20,12 @@ const ChatList = () => {
     <>
       <Container fluid>
         <Row>
-          <Col lg={4}>
+          <Col>
             <UserList />
           </Col>
-          <Col lg={8}>
+          {/* <Col lg={8}>
             <Chat />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>

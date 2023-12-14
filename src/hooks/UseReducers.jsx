@@ -138,9 +138,9 @@ const extraReducers = (builder) => {
     //   state.isLoading = false;
     //   state.isError = false;
     //   state.users=action?.payload?.data?.users
-    //   toast.success(`${action?.payload?.data?.message}`, {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //   });
+    //   // toast.success(`${action?.payload?.data?.message}`, {
+    //   //   position: toast.POSITION.TOP_RIGHT,
+    //   // });
     // })
     // .addCase(getAllUsersApi.rejected,(state,action)=>{
     //   state.isLoading = false;

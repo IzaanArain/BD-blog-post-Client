@@ -3,10 +3,10 @@
     border: none;
 }
 
-.user-list{
+/* .user-list{
     height: 90vh;
     overflow-y: scroll;
-}
+} */
 .chat{
 height: 90vh;
 }

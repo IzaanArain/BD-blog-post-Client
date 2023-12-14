@@ -40,9 +40,9 @@ const extraReducers = (builder) => {
       // console.log("Bearer token",action?.payload?.data?.user?.user_auth)
       axios.defaults.headers.common['Authorization']=`Bearer ${action?.payload?.data?.user?.user_auth}`
       state.user = action?.payload?.data?.user;
-      toast.success(`${action?.payload?.data?.message}`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      // toast.success(`${action?.payload?.data?.message}`, {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
     })
     .addCase(loginApi.rejected, (state, action) => {
       state.isLoading = false;

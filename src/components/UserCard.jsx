@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../features/Messages/MessageSlice";
 import { loggedInUser } from "../features/Auth/Auth";
 import { useNavigate } from "react-router-dom";
+import { socketConnect } from "../features/Messages/MessageSlice";
+
 const UserCard = ({ user }) => {
   const { name, email, image, _id } = user;
   const dispatch = useDispatch();
@@ -20,9 +22,6 @@ const UserCard = ({ user }) => {
 
   const getChat = (e) => {
     e.preventDefault();
-    // console.log(socket)
-    // console.log("sender_id",sender_id)
-    // console.log("reciever_id",_id)
     socket.emit("get_all_messages", { sender_id: sender_id, receiver_id: _id });
   };
 
@@ -42,7 +41,7 @@ const UserCard = ({ user }) => {
         <Card.Footer>
           <Button onClick={(e)=>{
              getChat(e)
-            navigate("/chat")
+            navigate("/chat",{state:{receiver_id:_id}})
           }}>...Start chatting</Button>
         </Card.Footer>
       </Card>

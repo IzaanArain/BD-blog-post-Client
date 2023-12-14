@@ -13,8 +13,13 @@ const persistAuthConfig = {
   //  blacklist: ['isLoading','isError'],
   // whitelist: ['user'],
 };
+// const persistMessageConfig = {
+//   key: "blog-messages",
+//   storage,
+// };
 
 const persistedUserReducer = persistReducer(persistAuthConfig, AuthReducer);
+// const persistedMessageReducer = persistReducer(persistMessageConfig, MessageReducer);
 
 const rootReducer = combineReducers({
   auth: persistedUserReducer,

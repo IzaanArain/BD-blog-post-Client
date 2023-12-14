@@ -6,31 +6,40 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../features/Messages/MessageSlice";
 import { loggedInUser } from "../features/Auth/Auth";
+import { useLocation } from "react-router-dom";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
+  console.log("messages state",messages);
   const [currentMessage, setCurrentMessage] = useState("");
   const socket = useSelector(useSocket);
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
-  console.log("messages",messages.length)
+  const location = useLocation();
+  const receiver_id = location?.state?.receiver_id;
+  console.log(socket);
+  console.log("messages", messages.length);
   useEffect(() => {
     if (socket) {
       socket.on("get_all_messages", (data) => {
-        setMessages((prev) => [...prev,...data]);
+        console.log("socket data",data)
+        setMessages(data);
       });
     }
   }, [socket]);
-  // console.log("messages", messages);
+  console.log("messages", currentMessage);
 
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {
-      const messageData = {};
+      const messageData = {
+        sender_id: sender_id,
+        receiver_id: receiver_id,
+        message: currentMessage,
+      };
       await socket.emit("send_message", messageData);
-      setMessages((prev) => {
-        return [...prev, messageData];
-      });
+      console.log(messageData);
+      setMessages((prev) => [...prev, messageData]);
       setCurrentMessage("");
     }
   };
@@ -55,9 +64,7 @@ const Chat = () => {
                           <p>{msg.message}</p>
                         </div>
                         <div className="message-meta">
-                          <p>
-                            {msg.author} : {msg.time}
-                          </p>
+                          <p>{msg.time}</p>
                         </div>
                       </div>
                     </Fragment>

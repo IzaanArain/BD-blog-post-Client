@@ -13,7 +13,7 @@ const Chat = () => {
   const socket = useSelector(useSocket);
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
-
+  console.log("messages",messages.length)
   useEffect(() => {
     if (socket) {
       socket.on("get_all_messages", (data) => {

@@ -25,7 +25,7 @@ const UserList = () => {
   const userList = useSelector(getAllUsers);
   return (
     <>
-      <Row xs={1} md={2} lg={4} className="g-4">
+      <Row xs={1} md={2} lg={3} xl={3} xxl={4} className="g-4">
         {userList.map((user, i) => {
           const id = user?._id;
           if (user_id !== id) {

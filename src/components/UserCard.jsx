@@ -43,7 +43,7 @@ const UserCard = ({ user }) => {
           <Button onClick={(e)=>{
              getChat(e)
             navigate("/chat")
-          }}>...start Chatting</Button>
+          }}>...Start chatting</Button>
         </Card.Footer>
       </Card>
     </>

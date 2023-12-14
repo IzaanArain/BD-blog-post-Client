@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import extraReducers from "../../hooks/UseReducers";
 import { toast } from "react-toastify";
 
-const user= JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
-const token = user?.user_auth;
+// const user= JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
+// const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
-
+console.log("auth",axios.defaults.headers.common)
 const initialState = {
   isLoading: false,
   isError: false,
@@ -133,12 +133,14 @@ export const completeProfileApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       // console.log("payload",payload)
-      const res = await axios.post(`${url}/complete_profile`, payload, {
+      const res = await axios.post(`${url}/complete_profile`, payload, 
+      {
         headers: {
           "Content-Type": "multipart/form-data",
-          authorization: `Bearer ${token}`,
+          // authorization: `Bearer ${token}`,
         },
-      });
+      }
+      );
       const data = await res.data;
       return { data };
     } catch (err) {

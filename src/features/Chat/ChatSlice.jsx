@@ -1,13 +1,13 @@
+import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import extraReducers from "../../hooks/UseReducers";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 // const user = JSON.parse(localStorage.getItem("user")) //? JSON.parse(localStorage.getItem("user")) : "";
 // const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
 // console.log("token", token);
-
+console.log("chat",axios.defaults.headers.common)
 const initialState = {
   isLoading: false,
   isError: false,
@@ -21,13 +21,15 @@ export const getAllUsersApi = createAsyncThunk(
   "auth/all_users",
   async (payload, thunkAPI) => {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const token = user?.user_auth;
-      const res = await axios.get(`${url}/all_users`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // const user = JSON.parse(localStorage.getItem("user"));
+      // const token = user?.user_auth;
+      const res = await axios.get(`${url}/all_users`, 
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // } 
+      );
       const data = await res.data;
       console.log("getAllUsersApi", data);
       return { data };

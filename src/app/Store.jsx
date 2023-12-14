@@ -5,6 +5,7 @@ import MessageReducer from "../features/Messages/MessageSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
+import axios from "axios";
 
 const persistAuthConfig = {
   key: "blog-user",
@@ -24,6 +25,17 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: [thunk],
+  // middleware: (getDefaultMiddleware) =>
+  // getDefaultMiddleware({
+  //   serializableCheck: false,
+  // }),
 });
 
 export const persistor = persistStore(store);
+
+persistor.subscribe(() => {
+  const persistedState = store.getState();
+  const { user } = persistedState?.auth || {};
+  console.log("persistedState",persistedState?.auth?.user?.user_auth)
+  axios.defaults.headers.common['Authorization'] = `Bearer ${user?.user_auth}`
+});

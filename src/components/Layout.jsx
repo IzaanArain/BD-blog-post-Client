@@ -11,6 +11,7 @@ import ResetPassword from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import UserList from "./UserList";
 import ChatList from "../pages/ChatList";
+import Chat from "./Chat";
 const Layout = () => {
   const user=useSelector(loggedInUser);
   const token=user?.user_auth;
@@ -22,6 +23,7 @@ const Layout = () => {
         {token ? (
           <Routes>
             <Route path="/users" element={<ChatList/>} />
+            <Route path="/chat" element={<Chat/>}/>
             <Route path="/complete_profile" element={<CompleteProfile/>} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>

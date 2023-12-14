@@ -22,62 +22,63 @@ const Chat = () => {
   }, [socket]);
   // console.log("messages", messages);
 
-  const sendMessage=async(e)=>{
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {
-      const messageData = {
-      };
+      const messageData = {};
       await socket.emit("send_message", messageData);
       setMessages((prev) => {
         return [...prev, messageData];
       });
-      setCurrentMessage("")
+      setCurrentMessage("");
     }
-  }
+  };
   return (
     <>
-      <Row>
-        <Col>
-          <div className="chat">
-            <div className="chat-header">
-              <h1>Live Chat</h1>
-            </div>
-            <div className="chat-body">
-              {messages.map((msg, i) => {
-                return (
-                  <Fragment key={i}>
-                    <div
-                      className="message"
-                      id={sender_id === msg.sender_id ? "you" : "other"}
-                    >
-                      <div className="message-content">
-                        <p>{msg.message}</p>
+      <Container>
+        <Row>
+          <Col>
+            <div className="chat">
+              <div className="chat-header">
+                <h1>Live Chat</h1>
+              </div>
+              <div className="chat-body">
+                {messages.map((msg, i) => {
+                  return (
+                    <Fragment key={i}>
+                      <div
+                        className="message"
+                        id={sender_id === msg.sender_id ? "you" : "other"}
+                      >
+                        <div className="message-content">
+                          <p>{msg.message}</p>
+                        </div>
+                        <div className="message-meta">
+                          <p>
+                            {msg.author} : {msg.time}
+                          </p>
+                        </div>
                       </div>
-                      <div className="message-meta">
-                        <p>
-                          {msg.author} : {msg.time}
-                        </p>
-                      </div>
-                    </div>
-                  </Fragment>
-                );
-              })}
+                    </Fragment>
+                  );
+                })}
+              </div>
+              <div className="chat-footer">
+                <input
+                  type="text"
+                  placeholder="Hey..."
+                  value={currentMessage}
+                  onChange={(e) => setCurrentMessage(e.target.value)}
+                  // onKeyDown={(e)=>{
+                  //   e.key==="Enter" && sendMessage()
+                  // }}
+                />
+                <button onClick={sendMessage}>&#9658;</button>
+              </div>
             </div>
-          <div className="chat-footer">
-          <input
-            type="text"
-            placeholder="Hey..."
-            value={currentMessage}
-            onChange={(e) => setCurrentMessage(e.target.value)}
-            // onKeyDown={(e)=>{
-            //   e.key==="Enter" && sendMessage()
-            // }}
-          />
-          <button onClick={sendMessage}>&#9658;</button>
-        </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

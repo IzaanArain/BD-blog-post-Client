@@ -9,14 +9,14 @@ import NoImage from "../assets/NoImage.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../features/Messages/MessageSlice";
 import { loggedInUser } from "../features/Auth/Auth";
-
+import { useNavigate } from "react-router-dom";
 const UserCard = ({ user }) => {
   const { name, email, image, _id } = user;
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
-
+  const navigate=useNavigate()
   const getChat = (e) => {
     e.preventDefault();
     // console.log(socket)
@@ -28,17 +28,21 @@ const UserCard = ({ user }) => {
   return (
     <>
       {/* <div onClick={getChat}> */}
-        <Card style={{ width: '18rem' }}>        
-              <Card.Img
-                src={image ? `${import.meta.env.VITE_API_URL}${image}` : NoImage}
-              />        
-              <Card.Body>
-                <Card.Title>{email}</Card.Title>
-                <Card.Text>Name : {name}</Card.Text>
-              </Card.Body>
-           
-         
-        </Card>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img
+          variant="top"
+          width={100}
+          height={180}
+          src={image ? `${import.meta.env.VITE_API_URL}${image}` : NoImage}
+        />
+        <Card.Body>
+          <Card.Title>{email}</Card.Title>
+          <Card.Text>Name : {name}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <Button onClick={()=>navigate("/chat")}>...start Chatting</Button>
+        </Card.Footer>
+      </Card>
       {/* </div> */}
     </>
   );

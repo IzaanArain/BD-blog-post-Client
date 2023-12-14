@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 // const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
 // console.log("token", token);
-console.log("chat",axios.defaults.headers.common)
+// console.log("chat",axios.defaults.headers.common)
+
 const initialState = {
   isLoading: false,
   isError: false,
@@ -31,7 +32,7 @@ export const getAllUsersApi = createAsyncThunk(
       // } 
       );
       const data = await res.data;
-      console.log("getAllUsersApi", data);
+      // console.log("getAllUsersApi", data);
       return { data };
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
@@ -54,9 +55,9 @@ const ChatSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.users = action?.payload?.data?.users;
-        toast.success(`${action?.payload?.data?.message}`, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        // toast.success(`${action?.payload?.data?.message}`, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        // });
       })
       .addCase(getAllUsersApi.rejected, (state, action) => {
         state.isLoading = false;

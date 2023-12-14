@@ -36,6 +36,6 @@ export const persistor = persistStore(store);
 persistor.subscribe(() => {
   const persistedState = store.getState();
   const { user } = persistedState?.auth || {};
-  console.log("persistedState",persistedState?.auth?.user?.user_auth)
+  // console.log("persistedState",persistedState?.auth?.user?.user_auth)
   axios.defaults.headers.common['Authorization'] = `Bearer ${user?.user_auth}`
 });

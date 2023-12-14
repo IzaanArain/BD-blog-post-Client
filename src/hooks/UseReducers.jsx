@@ -47,7 +47,7 @@ const extraReducers = (builder) => {
     .addCase(loginApi.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      // console.error("Rejected Error",action?.payload?.message);
+      console.error("Rejected Error",action?.payload);
       // console.error("Rejected Error",action?.error?.message);
       toast.error(`${action?.payload?.message}`, {
         position: toast.POSITION.TOP_RIGHT,

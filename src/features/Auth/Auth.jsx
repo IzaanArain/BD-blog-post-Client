@@ -6,21 +6,23 @@ import { toast } from "react-toastify";
 // const user= JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "";
 // const token = user?.user_auth;
 // axios.defaults.headers.common['Authorization']=`Bearer ${token}`;
-console.log("auth",axios.defaults.headers.common)
+// console.log("auth",axios.defaults.headers.common)
+
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}api/v1/`;
+// console.log("url",axios.defaults.baseURL);
+
 const initialState = {
   isLoading: false,
   isError: false,
   user: null,
 };
 
-const url = `http://localhost:5000/api/v1/user`;
-
 export const signUpApi = createAsyncThunk(
   "auth/signup",
   async (payload, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${url}/register`,
+        `user/register`,
         { email: payload.email, password: payload.password, role: "user" },
         {
           headers: {
@@ -43,7 +45,7 @@ export const OtpVerifyApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${url}/otp_verify`,
+        `user/otp_verify`,
         {
           email: payload.email,
           otp_code: payload.otp_code,
@@ -64,7 +66,7 @@ export const loginApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${url}/login`,
+        `user/login`,
         { email: payload.email, password: payload.password },
         {
           headers: {
@@ -86,7 +88,7 @@ export const ForgotPasswordApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = axios.post(
-        `${url}/forgot_password`,
+        `user/forgot_password`,
         {
           email: payload.email,
         },
@@ -109,7 +111,7 @@ export const resetPasswordApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.post(
-        `${url}/reset_password`,
+        `user/reset_password`,
         {
           email: payload.email,
           password: payload.password,
@@ -133,14 +135,12 @@ export const completeProfileApi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       // console.log("payload",payload)
-      const res = await axios.post(`${url}/complete_profile`, payload, 
-      {
+      const res = await axios.post(`user/complete_profile`, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
           // authorization: `Bearer ${token}`,
         },
-      }
-      );
+      });
       const data = await res.data;
       return { data };
     } catch (err) {
@@ -159,9 +159,9 @@ const AuthSlice = createSlice({
       state.isError = false;
       localStorage.removeItem("user");
       // localStorage.removeItem("persist:blog-user");
-      toast.success(`logout successful`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      // toast.success(`logout successful`, {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
     },
   },
   extraReducers,

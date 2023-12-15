@@ -1,68 +1,71 @@
-.user-btn{
-    background: none;
-    border: none;
+.user-btn {
+  background: none;
+  border: none;
 }
 
 /* .user-list{
     height: 90vh;
     overflow-y: scroll;
 } */
-.chat{
-height: 90vh;
+.chat {
+  height: 90vh;
 }
 
-.chat-header{
-    height: 10%;
-    display: flex;
-    align-items: center;
+.chat-header {
+  height: 10%;
+  display: flex;
+  align-items: center;
 }
 .chat-body {
-    height: 80%;
-    background-color: azure;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    padding: 10px;
-    border: solid 1px black;
-    border-radius: 10px;
-  }
+  height: 80%;
+  background-color: azure;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+  border: solid 1px black;
+  border-radius: 10px;
+}
 
 .message {
-    width: 45%;
-  }
-  .message-content{
-    color: white;
-    padding: 10px;
-    font-size: 20px;
-    overflow-y: scroll;
-    max-height: 200px;
-  }
-  
-  #you {
-    align-self: flex-end;
-  }
-  #you .message-content{
-    border-radius: 20px 20px 0px 20px;
-    background-color: green;
-  }
-  #other .message-content{
-    border-radius: 20px 20px 20px 0px;
-    background-color: cornflowerblue;
-  }
+  width: 45%;
+}
+.message-content {
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  overflow-y: scroll;
+  max-height: 200px;
+}
 
-  .chat-footer {
-    height: 10%;
-    margin-top: 10px;
-  }
-  
-  .chat-footer input {
-    padding: 10px;
-    width: 90%;
-    height: 100%;
-  }
-  .chat-footer button {
-    width: 10%;
-    padding: 10px;
-    height: 100%;
-  }
+#you {
+  align-self: flex-end;
+}
+#you .message-content {
+  border-radius: 20px 20px 0px 20px;
+  background-color: green;
+}
+#other .message-content {
+  border-radius: 20px 20px 20px 0px;
+  background-color: cornflowerblue;
+}
+
+/* .message-meta {
+  margin-left: 0.1rem;
+} */
+.chat-footer {
+  height: 10%;
+  margin-top: 10px;
+}
+
+.chat-footer input {
+  padding: 10px;
+  width: 90%;
+  height: 100%;
+}
+.chat-footer button {
+  width: 10%;
+  padding: 10px;
+  height: 100%;
+}

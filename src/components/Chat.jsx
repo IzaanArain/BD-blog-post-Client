@@ -80,7 +80,7 @@ const Chat = () => {
                           <p>{msg.message}</p>
                         </div>
                         <div className="message-meta">
-                          <p>{msg.time}</p>
+                            <p>{msg.time}</p>
                         </div>
                       </div>
                     </Fragment>

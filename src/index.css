@@ -24,24 +24,29 @@ height: 90vh;
     flex-direction: column;
     row-gap: 10px;
     padding: 10px;
-    border: solid 2px black;
+    border: solid 1px black;
+    border-radius: 10px;
   }
 
 .message {
     width: 45%;
-    padding: 10px;
   }
-  #you {
-    background-color: green;
+  .message-content{
     color: white;
+    padding: 10px;
     font-size: 20px;
-    align-self: flex-end;
+    border-radius: 20px 20px 0px 20px;
+    overflow-y: scroll;
   }
   
-  #other {
+  #you {
+    align-self: flex-end;
+  }
+  #you .message-content{
+    background-color: green;
+  }
+  #other .message-content{
     background-color: cornflowerblue;
-    color: white;
-    font-size: 20px;
   }
 
   .chat-footer {

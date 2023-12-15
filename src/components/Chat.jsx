@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import {
   emitMesseges,
   useSocket,
-  emitSendMessage
+  emitSendMessage,
 } from "../features/Messages/MessageSlice";
 
 const Chat = () => {
@@ -21,7 +21,7 @@ const Chat = () => {
   const receiver_id = location?.state?.receiver_id;
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
-
+  //  console.log("chat",socket);
   useEffect(() => {
     dispatch(
       emitMesseges({
@@ -29,14 +29,20 @@ const Chat = () => {
         receiver_id,
       })
     );
-  }, [dispatch,socket]);
-  // console.log("chat",socket);
+  }, [dispatch, socket]);
 
   useEffect(() => {
-    console.log(socket);
     if (socket) {
       socket.on("get_all_messages", (data) => {
         setMessages(data);
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("receive_message", (data) => {
+        setMessages((prev) => [...prev, data]);
       });
     }
   }, [socket]);
@@ -49,10 +55,7 @@ const Chat = () => {
         receiver_id: receiver_id,
         message: currentMessage,
       };
-      dispatch(emitSendMessage(messageData))
-      setMessages((prev) => {
-        return [...prev, messageData];
-      });
+      dispatch(emitSendMessage(messageData));
       setCurrentMessage("");
     }
   };

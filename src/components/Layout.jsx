@@ -12,29 +12,51 @@ import CompleteProfile from "../pages/CompleteProfile";
 import UserList from "./UserList";
 import ChatList from "../pages/ChatList";
 import Chat from "./Chat";
+import {
+  socketConnect,
+  disconnectSocket,
+} from "../features/Messages/MessageSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Layout = () => {
-  const user=useSelector(loggedInUser);
-  const token=user?.user_auth;
-  // console.log("token", token);
+  const dispatch = useDispatch();
+  const user = useSelector(loggedInUser);
+  const token = user?.user_auth;
+  
+  useEffect(() => {
+    if (token) {
+      try {
+        dispatch(socketConnect());
+      } catch (err) {
+        console.log(err.message);
+      }
+    } else {
+      try {
+        dispatch(disconnectSocket());
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  }, [token]);
   return (
     <>
       <BrowserRouter>
         <NavBar />
         {token ? (
           <Routes>
-            <Route path="/users" element={<ChatList/>} />
-            <Route path="/chat" element={<Chat/>}/>
-            <Route path="/complete_profile" element={<CompleteProfile/>} />
+            <Route path="/users" element={<ChatList />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/complete_profile" element={<CompleteProfile />} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>
         ) : (
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/otp_verify" element={<OtpVerify/>} />
-            <Route path="/forgot_password" element={<ForgotPassword/>} />
-            <Route path="/reset_password" element={<ResetPassword/>} />
+            <Route path="/otp_verify" element={<OtpVerify />} />
+            <Route path="/forgot_password" element={<ForgotPassword />} />
+            <Route path="/reset_password" element={<ResetPassword />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}

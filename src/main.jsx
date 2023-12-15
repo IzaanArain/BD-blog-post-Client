@@ -7,10 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./app/Store.jsx";
 import { PersistGate } from "redux-persist/integration/react";
-import { SocketService } from "./utils/SocketService.js";
-// import io from "socket.io-client";
-// export const Socket = io.connect(import.meta.env.VITE_API_URL);
-SocketService();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

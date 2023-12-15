@@ -6,7 +6,11 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/Auth/Auth";
 import { useLocation } from "react-router-dom";
-import { emitMesseges,useSocket,socketConnect} from "../features/Messages/MessageSlice";
+import {
+  emitMesseges,
+  useSocket,
+  emitSendMessage
+} from "../features/Messages/MessageSlice";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -15,28 +19,28 @@ const Chat = () => {
   const sender_id = sender?._id;
   const location = useLocation();
   const receiver_id = location?.state?.receiver_id;
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(emitMesseges({
-      sender_id,
-      receiver_id
-    }))
-  }, []);
+    dispatch(
+      emitMesseges({
+        sender_id,
+        receiver_id,
+      })
+    );
+  }, [dispatch]);
+
+  const socket = useSelector(useSocket);
+  console.log("chat",socket);
 
   useEffect(() => {
-    dispatch(socketConnect());
-  },[]);
+    if (socket) {
+      socket.on("get_all_messages", (data) => {
+        setMessages(data);
+      });
+    }
+  }, [socket]);
 
-  const socket=useSelector(useSocket)
-  // console.log("chat",socket)
-  useEffect(() => {
-   if(socket){
-    socket.on("get_all_messages",(data)=>{
-      setMessages(data)
-    })
-   }
-  }, []);
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {
@@ -45,6 +49,11 @@ const Chat = () => {
         receiver_id: receiver_id,
         message: currentMessage,
       };
+      dispatch(emitSendMessage(messageData))
+      setMessages((prev) => {
+        return [...prev, messageData];
+      });
+      setCurrentMessage("");
     }
   };
   return (

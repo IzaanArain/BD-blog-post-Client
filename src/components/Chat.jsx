@@ -20,6 +20,7 @@ const Chat = () => {
   const location = useLocation();
   const receiver_id = location?.state?.receiver_id;
   const dispatch = useDispatch();
+  const socket = useSelector(useSocket);
 
   useEffect(() => {
     dispatch(
@@ -28,12 +29,11 @@ const Chat = () => {
         receiver_id,
       })
     );
-  }, [dispatch]);
-
-  const socket = useSelector(useSocket);
-  console.log("chat",socket);
+  }, [dispatch,socket]);
+  // console.log("chat",socket);
 
   useEffect(() => {
+    console.log(socket);
     if (socket) {
       socket.on("get_all_messages", (data) => {
         setMessages(data);

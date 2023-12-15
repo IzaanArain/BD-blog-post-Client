@@ -7,6 +7,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import axios from "axios";
 
+
 const persistAuthConfig = {
   key: "blog-user",
   storage,
@@ -40,7 +41,6 @@ export const persistor = persistStore(store);
 
 persistor.subscribe(() => {
   const persistedState = store.getState();
-  const { user } = persistedState?.auth || {};
-  // console.log("persistedState",persistedState?.auth?.user?.user_auth)
-  axios.defaults.headers.common['Authorization'] = `Bearer ${user?.user_auth}`
+  const token = persistedState?.auth?.user?.user_auth || {};
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 });

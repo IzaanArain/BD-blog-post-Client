@@ -54,6 +54,7 @@ const Chat = () => {
         sender_id: sender_id,
         receiver_id: receiver_id,
         message: currentMessage,
+        
       };
       dispatch(emitSendMessage(messageData));
       setMessages((prev) => [...prev, messageData]);

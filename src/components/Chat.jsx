@@ -77,9 +77,9 @@ const Chat = () => {
                         id={sender_id === msg.sender_id._id ? "you" : "other"}
                       >
                         <div className="message-content">
-                          <div className="content-overflow">
+                          {/* <div className="content-overflow"> */}
                             <p>{msg.message}</p>
-                          </div>
+                          {/* </div> */}
                         </div>
                         <div className="message-meta">
                           <p>{msg.time}</p>

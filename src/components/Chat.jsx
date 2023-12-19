@@ -59,6 +59,7 @@ const Chat = () => {
       setCurrentMessage("");
     }
   };
+  console.log(messages);
   return (
     <>
       <Container>
@@ -74,12 +75,26 @@ const Chat = () => {
                     <Fragment key={i}>
                       <div
                         className="message"
-                        id={sender_id === msg.sender_id._id ? "you" : "other"}
+                        id={sender_id === msg?.sender_id._id ? "you" : "other"}
                       >
-                        <div className="message-content">
-                          {/* <div className="content-overflow"> */}
+                        {console.log(
+                          `${import.meta.env.VITE_API_URL}${
+                            msg?.sender_id?.image
+                          }`
+                        )}
+                        <div className="d-flex">
+                          <div className="message-content">
                             <p>{msg.message}</p>
-                          {/* </div> */}
+                          </div>
+                          <img
+                            src={`${import.meta.env.VITE_API_URL}${
+                              msg?.sender_id?.image
+                            }`}
+                            alt={msg?.sender_id?.name}
+                            width={50}
+                            height={50}
+                            id="chat-img"
+                          />
                         </div>
                         <div className="message-meta">
                           <p>{msg.time}</p>

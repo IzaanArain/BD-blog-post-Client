@@ -33,19 +33,18 @@ const Chat = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on("get_all_messages", (data) => {
-        setMessages(data);
+      socket.on("response", (data) => {
+        if (data?.object_type === "get_all__messages") {
+          setMessages(data?.data);
+        } else if (data?.object_type === "get_message") {
+          setMessages((prev) => [...prev, data?.data]);
+        }
+        // console.log("response data", data);
       });
     }
   }, [socket]);
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("receive_message", (data) => {
-        setMessages((prev) => [...prev, data]);
-      });
-    }
-  }, [socket]);
+  // console.log("messages", messages);
+  // console.log("currentMessage", currentMessage);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -54,10 +53,9 @@ const Chat = () => {
         sender_id: sender_id,
         receiver_id: receiver_id,
         message: currentMessage,
-        
       };
       dispatch(emitSendMessage(messageData));
-      setMessages((prev) => [...prev, messageData]);
+      // setMessages((prev) => [...prev, messageData]);
       setCurrentMessage("");
     }
   };
@@ -76,7 +74,7 @@ const Chat = () => {
                     <Fragment key={i}>
                       <div
                         className="message"
-                        id={sender_id === msg.sender_id ? "you" : "other"}
+                        id={sender_id === msg.sender_id._id ? "you" : "other"}
                       >
                         <div className="message-content">
                           <div className="content-overflow">

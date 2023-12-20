@@ -9,7 +9,6 @@ import OtpVerify from "../pages/OtpVerify";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
-import UserList from "./UserList";
 import ChatList from "../pages/ChatList";
 import Chat from "./Chat";
 import {

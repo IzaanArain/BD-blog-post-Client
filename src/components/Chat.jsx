@@ -59,7 +59,6 @@ const Chat = () => {
       setCurrentMessage("");
     }
   };
-  console.log(messages);
   return (
     <>
       <Container>
@@ -77,11 +76,6 @@ const Chat = () => {
                         className="message"
                         id={sender_id === msg?.sender_id._id ? "you" : "other"}
                       >
-                        {console.log(
-                          `${import.meta.env.VITE_API_URL}${
-                            msg?.sender_id?.image
-                          }`
-                        )}
                         <div className="d-flex">
                           <div className="message-content">
                             <p>{msg.message}</p>

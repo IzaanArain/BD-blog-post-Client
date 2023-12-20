@@ -21,8 +21,7 @@ const Chat = () => {
   const receiver_id = location?.state?.receiver_id;
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
-  //  console.log("chat",socket);
-  
+
   useEffect(() => {
     if(socket){
       dispatch(
@@ -32,21 +31,22 @@ const Chat = () => {
         })
       );
     }
-  }, [socket]);
+  }, [dispatch,socket]);
 
   useEffect(() => {
-    if (socket) {
-      socket.on("response", (data) => {
-        if (data?.object_type === "get_all_messages") {
-          setMessages(data?.data);
-        } 
-        else if (data?.object_type === "get_message") {
-          setMessages((prev) => [...prev, data?.data]);
-        }
-        console.log("response", data);
-      });
-    }
+      if (socket) {
+        socket.on("response", (data) => {
+          if (data?.object_type === "get_all_messages") {
+            console.log("get_all_messages",data)
+            setMessages(data?.data);
+          }  else if (data?.object_type === "get_message") {
+            console.log("get_message",data.data)
+            setMessages((prev) => [...prev, data?.data]);
+          }
+        });
+      }
   }, [socket]);
+
   // console.log("messages", messages);
   // console.log("currentMessage", currentMessage);
   const sendMessage = async (e) => {

@@ -9,7 +9,6 @@ const initialState = {
   messages: [],
   socket: null,
 };
-console.log(Socket)
 const MessageSlice = createSlice({
   name: "message",
   initialState,

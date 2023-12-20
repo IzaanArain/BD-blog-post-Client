@@ -22,6 +22,7 @@ const Chat = () => {
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
   //  console.log("chat",socket);
+  
   useEffect(() => {
     if(socket){
       dispatch(

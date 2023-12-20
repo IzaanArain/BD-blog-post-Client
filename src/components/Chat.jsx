@@ -23,29 +23,31 @@ const Chat = () => {
   const socket = useSelector(useSocket);
   //  console.log("chat",socket);
   useEffect(() => {
-    dispatch(
-      emitMesseges({
-        sender_id,
-        receiver_id,
-      })
-    );
-  }, [dispatch, socket]);
+    if(socket){
+      dispatch(
+        emitMesseges({
+          sender_id,
+          receiver_id,
+        })
+      );
+    }
+  }, [socket]);
 
   useEffect(() => {
     if (socket) {
       socket.on("response", (data) => {
-        if (data?.object_type === "get_all__messages") {
+        if (data?.object_type === "get_all_messages") {
           setMessages(data?.data);
-        } else if (data?.object_type === "get_message") {
+        } 
+        else if (data?.object_type === "get_message") {
           setMessages((prev) => [...prev, data?.data]);
         }
-        // console.log("response data", data);
+        console.log("response", data);
       });
     }
   }, [socket]);
   // console.log("messages", messages);
   // console.log("currentMessage", currentMessage);
-
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {
@@ -55,7 +57,6 @@ const Chat = () => {
         message: currentMessage,
       };
       dispatch(emitSendMessage(messageData));
-      // setMessages((prev) => [...prev, messageData]);
       setCurrentMessage("");
     }
   };

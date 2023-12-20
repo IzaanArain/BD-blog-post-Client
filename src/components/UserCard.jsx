@@ -6,24 +6,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import NoImage from "../assets/NoImage.jpg";
-import { useDispatch, useSelector } from "react-redux";
-import { useSocket } from "../features/Messages/MessageSlice";
-import { loggedInUser } from "../features/Auth/Auth";
 import { useNavigate } from "react-router-dom";
-import { socketConnect } from "../features/Messages/MessageSlice";
 
 const UserCard = ({ user }) => {
   const { name, email, image, _id } = user;
-  const dispatch = useDispatch();
-  const socket = useSelector(useSocket);
-  const sender = useSelector(loggedInUser);
-  const sender_id = sender?._id;
   const navigate=useNavigate();
-
-  const getChat = (e) => {
-    e.preventDefault();
-    socket.emit("get_all_messages", { sender_id: sender_id, receiver_id: _id });
-  };
 
   return (
     <>
@@ -40,7 +27,6 @@ const UserCard = ({ user }) => {
         </Card.Body>
         <Card.Footer>
           <Button onClick={(e)=>{
-             getChat(e)
             navigate("/chat",{state:{receiver_id:_id}})
           }}>...Start chatting</Button>
         </Card.Footer>

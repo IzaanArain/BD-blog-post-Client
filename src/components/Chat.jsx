@@ -24,7 +24,7 @@ const Chat = () => {
   const receiver_id = location?.state?.receiver_id;
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
-  console.log(socket);
+  // console.log(socket);
   const messages = useSelector(useMessage);
   useEffect(() => {
     if (socket) {

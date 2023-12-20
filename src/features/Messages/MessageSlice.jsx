@@ -14,7 +14,13 @@ const MessageSlice = createSlice({
   initialState,
   reducers: {
     socketConnect: (state, action) => {
+     if(Socket){
       state.socket = Socket;
+     }else{
+      toast.error(`connection failed`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+     }
     },
     emitMesseges: (state, action) => {
       Socket.emit("get_all_messages", action.payload);

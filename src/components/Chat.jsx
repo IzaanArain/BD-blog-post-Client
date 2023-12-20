@@ -38,18 +38,24 @@ const Chat = () => {
   }, [dispatch, socket]);
 
   useEffect(() => {
-    if (socket) {
-      socket.on("response", (data) => {
-        if (data?.object_type === "get_all_messages") {
-          // console.log("get_all_messages",data)
-          // setMessages(data?.data);
-          dispatch(setMessages(data?.data));
-        } else if (data?.object_type === "get_message") {
-          // console.log("get_message",data.data)
-          // setMessages((prev) => [...prev, data?.data]);
-          dispatch(addMessage(data?.data));
-        }
-      });
+    let mount=true
+    if(mount){
+      if (socket) {
+        socket.on("response", (data) => {
+          if (data?.object_type === "get_all_messages") {
+            console.log("get_all_messages",data)
+            // setMessages(data?.data);
+            dispatch(setMessages(data?.data));
+          } else if (data?.object_type === "get_message") {
+            console.log("get_message",data.data)
+            // setMessages((prev) => [...prev, data?.data]);
+            dispatch(addMessage(data?.data));
+          }
+        });
+      }
+    }
+    return ()=>{
+      mount=false
     }
   }, [dispatch, socket]);
 
@@ -112,9 +118,9 @@ const Chat = () => {
                   placeholder="Hey..."
                   value={currentMessage}
                   onChange={(e) => setCurrentMessage(e.target.value)}
-                  // onKeyDown={(e)=>{
-                  //   e.key==="Enter" && sendMessage()
-                  // }}
+                  onKeyDown={(e)=>{
+                    e.key==="Enter" && sendMessage(e)
+                  }}
                 />
                 <button onClick={sendMessage}>&#9658;</button>
               </div>

@@ -19,16 +19,30 @@ const MessageSlice = createSlice({
     emitMesseges: (state, action) => {
       Socket.emit("get_all_messages", action.payload);
     },
-    emitSendMessage:(state,action)=>{
-      Socket.emit("send_message",action.payload)
+    emitSendMessage: (state, action) => {
+      Socket.emit("send_message", action.payload);
     },
     disconnectSocket: (state, action) => {
       Socket.on("disconnect");
     },
+    setMessages: (state, action) => {
+      state.messages = action.payload;
+    },
+    addMessage: (state, action) => {
+      console.log("addMessage",action?.payload)
+      state.messages.push(action?.payload);
+    },
   },
 });
 
-export const { socketConnect, emitMesseges, disconnectSocket,emitSendMessage } =
-  MessageSlice.actions;
+export const {
+  socketConnect,
+  emitMesseges,
+  disconnectSocket,
+  emitSendMessage,
+  setMessages,
+  addMessage,
+} = MessageSlice.actions;
 export const useSocket = (state) => state?.message?.socket;
+export const useMessage = (state) => state?.message?.messages;
 export default MessageSlice.reducer;

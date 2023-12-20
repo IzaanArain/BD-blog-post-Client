@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import NoImage from "../assets/NoImage.jpg";
 import { useNavigate } from "react-router-dom";
-
 const UserCard = ({ user }) => {
   const { name, email, image, _id } = user;
   const navigate=useNavigate();

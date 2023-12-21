@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState,useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -26,6 +26,14 @@ const Chat = () => {
   const socket = useSelector(useSocket);
   // console.log(socket);
   const messages = useSelector(useMessage);
+  const lastMessageRef = useRef(null);
+  
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    console.log(lastMessageRef)
+    lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   useEffect(() => {
     if (socket) {
       dispatch(
@@ -38,25 +46,24 @@ const Chat = () => {
   }, [dispatch, socket]);
 
   useEffect(() => {
-    let mount=true
-    if(mount){
-      if (socket) {
-        socket.on("response", (data) => {
-          if (data?.object_type === "get_all_messages") {
-            console.log("get_all_messages",data)
-            // setMessages(data?.data);
-            dispatch(setMessages(data?.data));
-          } else if (data?.object_type === "get_message") {
-            console.log("get_message",data.data)
-            // setMessages((prev) => [...prev, data?.data]);
-            dispatch(addMessage(data?.data));
-          }
-        });
-      }
+    if (socket) {
+      socket.on("response", (data) => {
+        // console.log("Received response:", data);
+
+        if (data?.object_type === "get_all_messages") {
+          // console.log("get_all_messages", data);
+          // setMessages(data?.data);
+          dispatch(setMessages(data?.data));
+        } else if (data?.object_type === "get_message") {
+          console.log("get_message", data.data);
+          // setMessages((prev) => [...prev, data?.data]);
+          dispatch(addMessage(data?.data));
+        }
+      });
     }
-    return ()=>{
-      mount=false
-    }
+    // return () => {
+    //   socket.off("response");
+    // };
   }, [dispatch, socket]);
 
   // console.log("messages", messages);
@@ -89,6 +96,7 @@ const Chat = () => {
                       <div
                         className="message"
                         id={sender_id === msg?.sender_id._id ? "you" : "other"}
+                        ref={lastMessageRef}
                       >
                         <div className="d-flex">
                           <div className="message-content">
@@ -118,8 +126,8 @@ const Chat = () => {
                   placeholder="Hey..."
                   value={currentMessage}
                   onChange={(e) => setCurrentMessage(e.target.value)}
-                  onKeyDown={(e)=>{
-                    e.key==="Enter" && sendMessage(e)
+                  onKeyDown={(e) => {
+                    e.key === "Enter" && sendMessage(e);
                   }}
                 />
                 <button onClick={sendMessage}>&#9658;</button>

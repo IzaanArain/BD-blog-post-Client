@@ -9,7 +9,6 @@ import { completeProfileApi } from "../features/Auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/Auth/Auth";
 import  NoImage from "../assets/NoImage.jpg"
-const url = `http://localhost:5000`;
 
 const CompleteProfile = () => {
   const user = useSelector(loggedInUser);
@@ -22,7 +21,7 @@ const CompleteProfile = () => {
   const [imagePreview, setImagePreview] = useState("");
 
   const dispatch = useDispatch();
-  const newImage = `${url}/${user.image}`;
+  const newImage = `${import.meta.env.VITE_API_URL}${user.image}`;
   const formData = new FormData();
   formData.append("name", name);
   formData.append("phone", phone);

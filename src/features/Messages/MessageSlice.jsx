@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-import io from "socket.io-client";
+import {io} from "socket.io-client";
 const Socket = io.connect(import.meta.env.VITE_API_URL);
 const initialState = {
   isLoading: false,
@@ -14,13 +14,14 @@ const MessageSlice = createSlice({
   initialState,
   reducers: {
     socketConnect: (state, action) => {
-     if(Socket){
-      state.socket = Socket;
-     }else{
-      toast.error(`connection failed`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-     }
+      if (Socket) {
+        Socket.emit("connection");
+        state.socket = Socket;
+      } else {
+        toast.error(`connection failed`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     },
     emitMesseges: (state, action) => {
       Socket.emit("get_all_messages", action.payload);
@@ -30,12 +31,13 @@ const MessageSlice = createSlice({
     },
     disconnectSocket: (state, action) => {
       Socket.on("disconnect");
+      state.socket = null;
     },
     setMessages: (state, action) => {
       state.messages = action.payload;
     },
     addMessage: (state, action) => {
-      console.log("addMessage",action?.payload)
+      // console.log("addMessage",action?.payload)
       state.messages.push(action?.payload);
     },
   },

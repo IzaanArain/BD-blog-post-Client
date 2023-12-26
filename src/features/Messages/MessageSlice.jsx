@@ -17,25 +17,14 @@ const MessageSlice = createSlice({
     socketConnect: (state, action) => {
       state.socket=action.payload;
       state.socket.emit("connection")
-      // if (Socket) {
-      //   Socket.emit("connection");
-      //   state.socket = Socket;
-      // } else {
-      //   toast.error(`connection failed`, {
-      //     position: toast.POSITION.TOP_RIGHT,
-      //   });
-      // }
     },
     emitMesseges: (state, action) => {
-      // Socket.emit("get_all_messages", action.payload);
       state.socket.emit("get_all_messages", action.payload);
     },
     emitSendMessage: (state, action) => {
-      // Socket.emit("send_message", action.payload);
       state.socket.emit("send_message", action.payload);
     },
     disconnectSocket: (state, action) => {
-      // Socket.on("disconnect");
       state.socket.on("disconnect");
       state.socket = null;
     },

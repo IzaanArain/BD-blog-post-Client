@@ -18,14 +18,14 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import {io} from "socket.io-client";
+import { io } from "socket.io-client";
 const Socket = io.connect(import.meta.env.VITE_API_URL);
 
 const Layout = () => {
   const dispatch = useDispatch();
   const user = useSelector(loggedInUser);
   const token = user?.user_auth;
-  
+
   useEffect(() => {
     if (token) {
       try {
@@ -40,8 +40,11 @@ const Layout = () => {
         console.log(err.message);
       }
     }
-  }, [dispatch,token]);
-  
+    return () => {
+      dispatch(disconnectSocket());
+    };
+  }, [dispatch, token]);
+
   return (
     <>
       <BrowserRouter>

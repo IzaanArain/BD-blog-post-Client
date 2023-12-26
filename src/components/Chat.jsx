@@ -30,7 +30,7 @@ const Chat = () => {
   
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
-    console.log(lastMessageRef)
+    // console.log(lastMessageRef)
     lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 

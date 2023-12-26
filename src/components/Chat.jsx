@@ -65,6 +65,7 @@ const Chat = () => {
 
   // console.log("messages", messages);
   // console.log("currentMessage", currentMessage);
+  
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {

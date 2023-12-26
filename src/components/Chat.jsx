@@ -61,9 +61,6 @@ const Chat = () => {
         }
       });
     }
-    // return () => {
-    //   socket.off("response");
-    // };
   }, [dispatch, socket]);
 
   // console.log("messages", messages);

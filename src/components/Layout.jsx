@@ -18,6 +18,9 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
+import {io} from "socket.io-client";
+const Socket = io.connect(import.meta.env.VITE_API_URL);
+
 const Layout = () => {
   const dispatch = useDispatch();
   const user = useSelector(loggedInUser);
@@ -26,7 +29,7 @@ const Layout = () => {
   useEffect(() => {
     if (token) {
       try {
-        dispatch(socketConnect());
+        dispatch(socketConnect(Socket));
       } catch (err) {
         console.log(err.message);
       }

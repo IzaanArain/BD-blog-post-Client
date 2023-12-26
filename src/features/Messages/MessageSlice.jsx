@@ -1,36 +1,42 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {io} from "socket.io-client";
-const Socket = io.connect(import.meta.env.VITE_API_URL);
+// import {io} from "socket.io-client";
+// const Socket = io.connect(import.meta.env.VITE_API_URL);
 const initialState = {
   isLoading: false,
   isError: false,
   messages: [],
   socket: null,
 };
+
 const MessageSlice = createSlice({
   name: "message",
   initialState,
   reducers: {
     socketConnect: (state, action) => {
-      if (Socket) {
-        Socket.emit("connection");
-        state.socket = Socket;
-      } else {
-        toast.error(`connection failed`, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      }
+      state.socket=action.payload;
+      state.socket.emit("connection")
+      // if (Socket) {
+      //   Socket.emit("connection");
+      //   state.socket = Socket;
+      // } else {
+      //   toast.error(`connection failed`, {
+      //     position: toast.POSITION.TOP_RIGHT,
+      //   });
+      // }
     },
     emitMesseges: (state, action) => {
-      Socket.emit("get_all_messages", action.payload);
+      // Socket.emit("get_all_messages", action.payload);
+      state.socket.emit("get_all_messages", action.payload);
     },
     emitSendMessage: (state, action) => {
-      Socket.emit("send_message", action.payload);
+      // Socket.emit("send_message", action.payload);
+      state.socket.emit("send_message", action.payload);
     },
     disconnectSocket: (state, action) => {
-      Socket.on("disconnect");
+      // Socket.on("disconnect");
+      state.socket.on("disconnect");
       state.socket = null;
     },
     setMessages: (state, action) => {

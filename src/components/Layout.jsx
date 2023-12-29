@@ -18,8 +18,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { io } from "socket.io-client";
-const Socket = io.connect(import.meta.env.VITE_API_URL);
+import io from "socket.io-client";
+const socket = io.connect(import.meta.env.VITE_API_URL);
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Layout = () => {
   useEffect(() => {
     if (token) {
       try {
-        dispatch(socketConnect(Socket));
+        dispatch(socketConnect(socket));
       } catch (err) {
         console.log(err.message);
       }

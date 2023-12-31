@@ -45,23 +45,23 @@ const Chat = () => {
     }
   }, [dispatch, socket]);
 
-  useEffect(() => {
-    if (socket) {
-      socket.on("response", (data) => {
-        // console.log("Received response:", data);
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.on("response", (data) => {
+  //       // console.log("Received response:", data);
 
-        if (data?.object_type === "get_all_messages") {
-          // console.log("get_all_messages", data);
-          // setMessages(data?.data);
-          dispatch(setMessages(data?.data));
-        } else if (data?.object_type === "get_message") {
-          console.log("get_message", data.data);
-          // setMessages((prev) => [...prev, data?.data]);
-          dispatch(addMessage(data?.data));
-        }
-      });
-    }
-  }, [dispatch, socket]);
+  //       if (data?.object_type === "get_all_messages") {
+  //         // console.log("get_all_messages", data);
+  //         // setMessages(data?.data);
+  //         dispatch(setMessages(data?.data));
+  //       } else if (data?.object_type === "get_message") {
+  //         console.log("get_message", data.data);
+  //         // setMessages((prev) => [...prev, data?.data]);
+  //         dispatch(addMessage(data?.data));
+  //       }
+  //     });
+  //   }
+  // }, [dispatch, socket]);
 
   // console.log("messages", messages);
   // console.log("currentMessage", currentMessage);

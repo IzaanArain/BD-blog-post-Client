@@ -6,7 +6,9 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/Auth/Auth";
 import { useLocation } from "react-router-dom";
-
+import io from "socket.io-client";
+const socket = io.connect(import.meta.env.VITE_API_URL);
+console.log("socket", socket);
 const NewChat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -14,9 +16,9 @@ const NewChat = () => {
   const sender_id = sender?._id;
   const location = useLocation();
   const receiver_id = location?.state?.receiver_id;
-//   const dispatch = useDispatch();
-//   console.log("sender",sender_id)
-//   console.log("receiver",receiver_id)
+  //   const dispatch = useDispatch();
+  //   console.log("sender",sender_id)
+  //   console.log("receiver",receiver_id)
 
   const lastMessageRef = useRef(null);
   useEffect(() => {
@@ -25,6 +27,30 @@ const NewChat = () => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(() => {
+    if (socket) {
+      socket.emit("get_all_messages", {
+        sender_id,
+        receiver_id,
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("response", (data) => {
+        console.log("Received response:", data);
+        if (data?.object_type === "get_all_messages") {
+          console.log("get_all_messages", data);
+          setMessages(data?.data);
+        } else if (data?.object_type === "get_message") {
+          console.log("get_message", data.data);
+          setMessages((prev) => [...prev, data?.data]);
+        }
+      });
+    }
+  }, [socket]);
+  
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {
@@ -33,6 +59,7 @@ const NewChat = () => {
         receiver_id: receiver_id,
         message: currentMessage,
       };
+      socket.emit("send_message", messageData);
       setCurrentMessage("");
     }
   };

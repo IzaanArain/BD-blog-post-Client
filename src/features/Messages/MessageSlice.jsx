@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 // const soc = io.connect(import.meta.env.VITE_API_URL);
 
 const initialState = {

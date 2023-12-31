@@ -27,24 +27,24 @@ const Layout = () => {
   const user = useSelector(loggedInUser);
   const token = user?.user_auth;
 
-  useEffect(() => {
-    if (token) {
-      try {
-        dispatch(socketConnect());
-      } catch (err) {
-        console.log(err.message);
-      }
-    } else {
-      try {
-        dispatch(disconnectSocket());
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-    return () => {
-      dispatch(disconnectSocket());
-    };
-  }, [dispatch, token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     try {
+  //       dispatch(socketConnect());
+  //     } catch (err) {
+  //       console.log(err.message);
+  //     }
+  //   } else {
+  //     try {
+  //       dispatch(disconnectSocket());
+  //     } catch (err) {
+  //       console.log(err.message);
+  //     }
+  //   }
+  //   return () => {
+  //     dispatch(disconnectSocket());
+  //   };
+  // }, [dispatch, token]);
 
   return (
     <>

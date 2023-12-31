@@ -11,6 +11,7 @@ import ResetPassword from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import ChatList from "../pages/ChatList";
 import Chat from "./Chat";
+import NewChat from "./NewChat";
 import {
   socketConnect,
   disconnectSocket,
@@ -52,7 +53,8 @@ const Layout = () => {
         {token ? (
           <Routes>
             <Route path="/users" element={<ChatList />} />
-            <Route path="/chat" element={<Chat />} />
+            {/* <Route path="/chat" element={<Chat />} /> */}
+            <Route path="/newchat" element={<NewChat />} />
             <Route path="/complete_profile" element={<CompleteProfile />} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>

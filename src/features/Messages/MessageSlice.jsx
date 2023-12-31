@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
-const soc = io.connect(import.meta.env.VITE_API_URL);
+// const soc = io.connect(import.meta.env.VITE_API_URL);
 
 const initialState = {
   isLoading: false,
@@ -29,7 +29,7 @@ const MessageSlice = createSlice({
     disconnectSocket: (state, action) => {
       // state.socket.on("disconnect");
       state.socket = null;
-      soc.on("disconnect")
+      // soc.on("disconnect")
     },
     setMessages: (state, action) => {
       state.messages = action.payload;

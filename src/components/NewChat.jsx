@@ -8,37 +8,31 @@ import { loggedInUser } from "../features/Auth/Auth";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 const socket = io.connect(import.meta.env.VITE_API_URL);
-console.log("socket", socket);
+// console.log("socket", socket);
 
 const NewChat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const sender = useSelector(loggedInUser);
-  console.log(sender)
   const sender_id = sender?._id;
   const location = useLocation();
   const receiver_id = location?.state?.receiver_id;
   
   const lastMessageRef = useRef(null);
   useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    // console.log(lastMessageRef)
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   useEffect(() => {
-    // if (socket) {
       socket.emit("get_all_messages", {
         sender_id,
         receiver_id,
       });
-    // }
   }, []);
 
   useEffect(() => {
-    // if (socket) {
       socket.on("response", (data) => {
-        // console.log("Received response:", data);
+        console.log("Received response:", data);
         if (data?.object_type === "get_all_messages") {
         //   console.log("get_all_messages", data);
           setMessages(data?.data);
@@ -47,7 +41,6 @@ const NewChat = () => {
           setMessages((prev) => [...prev, data?.data]);
         }
       });
-    // }
   }, []);
 
   const sendMessage = async (e) => {

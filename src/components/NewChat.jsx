@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
 const socket = io.connect(import.meta.env.VITE_API_URL);
 console.log("socket", socket);
+
 const NewChat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -41,16 +42,16 @@ const NewChat = () => {
       socket.on("response", (data) => {
         console.log("Received response:", data);
         if (data?.object_type === "get_all_messages") {
-          console.log("get_all_messages", data);
+        //   console.log("get_all_messages", data);
           setMessages(data?.data);
         } else if (data?.object_type === "get_message") {
-          console.log("get_message", data.data);
+        //   console.log("get_message", data.data);
           setMessages((prev) => [...prev, data?.data]);
         }
       });
     }
   }, [socket]);
-  
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {

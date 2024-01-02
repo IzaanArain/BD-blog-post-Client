@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState,useRef } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -27,11 +27,11 @@ const Chat = () => {
   // console.log(socket);
   const messages = useSelector(useMessage);
   const lastMessageRef = useRef(null);
-  
+
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
     // console.log(lastMessageRef)
-    lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   useEffect(() => {
@@ -61,11 +61,14 @@ const Chat = () => {
         }
       });
     }
+    return () => {
+      socket.off("response");
+    };
   }, [dispatch, socket]);
 
   console.log("messages", messages);
   console.log("currentMessage", currentMessage);
-  
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (currentMessage !== "") {

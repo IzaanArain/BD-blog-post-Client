@@ -60,14 +60,11 @@ const Chat = () => {
           dispatch(addMessage(data?.data));
         }
       });
+      return () => {
+        socket.off("response");
+      };
     }
-    return () => {
-      socket.off("response");
-    };
   }, [dispatch, socket]);
-
-  console.log("messages", messages);
-  console.log("currentMessage", currentMessage);
 
   const sendMessage = async (e) => {
     e.preventDefault();

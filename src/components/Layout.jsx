@@ -19,32 +19,29 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-// import io from "socket.io-client";
-// const socket = io.connect(import.meta.env.VITE_API_URL);
-// console.log("socket",socket)
 const Layout = () => {
   const dispatch = useDispatch();
   const user = useSelector(loggedInUser);
   const token = user?.user_auth;
 
-  // useEffect(() => {
-  //   if (token) {
-  //     try {
-  //       dispatch(socketConnect());
-  //     } catch (err) {
-  //       console.log(err.message);
-  //     }
-  //   } else {
-  //     try {
-  //       dispatch(disconnectSocket());
-  //     } catch (err) {
-  //       console.log(err.message);
-  //     }
-  //   }
-  //   return () => {
-  //     dispatch(disconnectSocket());
-  //   };
-  // }, [dispatch, token]);
+  useEffect(() => {
+    if (token) {
+      try {
+        dispatch(socketConnect());
+      } catch (err) {
+        console.log(err.message);
+      }
+    } else {
+      try {
+        dispatch(disconnectSocket());
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    return () => {
+      dispatch(disconnectSocket());
+    };
+  }, [dispatch, token]);
 
   return (
     <>
@@ -53,8 +50,8 @@ const Layout = () => {
         {token ? (
           <Routes>
             <Route path="/users" element={<ChatList />} />
-            {/* <Route path="/chat" element={<Chat />} /> */}
-            <Route path="/newchat" element={<NewChat />} />
+            <Route path="/chat" element={<Chat />} />
+            {/* <Route path="/newchat" element={<NewChat />} /> */}
             <Route path="/complete_profile" element={<CompleteProfile />} />
             <Route path="*" element={<Navigate to="/users" />} />
           </Routes>

@@ -22,6 +22,7 @@ const NewChat = () => {
 
   useEffect(() => {
     if (socket) {
+      // console.log("socket_id",socket.id)
       socket.emit("get_all_messages", {
         sender_id,
         receiver_id,

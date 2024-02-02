@@ -27,7 +27,7 @@ const UserCard = ({ user }) => {
         <Card.Footer>
           <Button onClick={(e)=>{
             e.preventDefault()
-            navigate("/chat",{state:{receiver_id:_id}})
+            navigate("/chat",{state:{receiver_id:_id,name:name}})
             // navigate("/newchat",{state:{receiver_id:_id}})
           }}>...Start chatting</Button>
         </Card.Footer>

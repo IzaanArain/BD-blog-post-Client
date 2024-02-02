@@ -21,7 +21,7 @@ const Chat = () => {
   const sender = useSelector(loggedInUser);
   const sender_id = sender?._id;
   const location = useLocation();
-  const receiver_id = location?.state?.receiver_id;
+  const {receiver_id,name:receiverName} = location?.state;
   const dispatch = useDispatch();
   const socket = useSelector(useSocket);
   // console.log(socket);
@@ -36,6 +36,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (socket) {
+      console.log("socket_id",socket.id)
       dispatch(
         emitMesseges({
           sender_id,
@@ -85,7 +86,7 @@ const Chat = () => {
           <Col>
             <div className="chat">
               <div className="chat-header">
-                <h1>Live Chat</h1>
+                <h1>Live Chat : {receiverName}</h1>
               </div>
               <div className="chat-body">
                 {messages.map((msg, i) => {
